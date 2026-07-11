@@ -1,0 +1,230 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  ADMIN
+  STUDENT
+}
+
+enum ApplicationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ServiceRequestStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
+model User {
+  id           String    @id @default(uuid())
+  email        String    @unique
+  name         String
+  passwordHash String
+  role         Role      @default(STUDENT)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  student      Student?
+}
+
+model Student {
+  id               String             @id @default(uuid())
+  userId           String             @unique
+  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  fullName         String
+  gender           String
+  dob              DateTime
+  phone            String
+  address          String
+  passportPhoto    String
+  isApproved       Boolean            @default(false)
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  progress         StudentProgress[]
+  quizScores       StudentQuizScore[]
+}
+
+model Service {
+  id                 String               @id @default(uuid())
+  name               String
+  slug               String               @unique
+  description        String
+  benefits           String[]             // Benefit bullet points
+  process            String[]             // Action workflow steps
+  features           String[]             // Detailed service capabilities
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  serviceRequests    ServiceRequest[]
+}
+
+model Program {
+  id              String         @id @default(uuid())
+  name            String         @unique
+  slug            String         @unique
+  description     String
+  duration        String
+  requirements    String[]       // Entry criteria/requirements
+  learningOutcomes String[]      // Course result checklist
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+  registrations   Registration[]
+  courses         Course[]
+}
+
+model Registration {
+  id            String            @id @default(uuid())
+  fullName      String
+  gender        String
+  dob           DateTime
+  email         String
+  phone         String
+  address       String
+  passportPhoto String
+  programId     String
+  program       Program           @relation(fields: [programId], references: [id], onDelete: Cascade)
+  status        ApplicationStatus @default(PENDING)
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+}
+
+model ServiceRequest {
+  id                 String               @id @default(uuid())
+  fullName           String
+  companyName        String?
+  email              String
+  phone              String
+  serviceId          String
+  service            Service              @relation(fields: [serviceId], references: [id], onDelete: Cascade)
+  projectDescription String
+  budget             String
+  preferredDate      DateTime
+  status             ServiceRequestStatus @default(PENDING)
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+}
+
+model Course {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  programId   String
+  program     Program  @relation(fields: [programId], references: [id], onDelete: Cascade)
+  lessons     Lesson[]
+}
+
+model Lesson {
+  id           String            @id @default(uuid())
+  title        String
+  content      String
+  videoUrl     String?           // For embed video
+  materialsUrl String?           // For handouts/PDFs
+  order        Int
+  courseId     String
+  course       Course            @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  quizzes      Quiz[]
+  progress     StudentProgress[]
+}
+
+model Quiz {
+  id            String             @id @default(uuid())
+  question      String
+  options       String[]           // Array of multi-choice options
+  correctAnswer String             // Index or exact option text
+  lessonId      String
+  lesson        Lesson             @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  scores        StudentQuizScore[]
+}
+
+model StudentProgress {
+  id          String   @id @default(uuid())
+  studentId   String
+  student     Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  lessonId    String
+  lesson      Lesson   @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  completedAt DateTime @default(now())
+
+  @@unique([studentId, lessonId])
+}
+
+model StudentQuizScore {
+  id        String   @id @default(uuid())
+  studentId String
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  quizId    String
+  quiz      Quiz     @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  score     Float
+  passed    Boolean
+  createdAt DateTime @default(now())
+
+  @@unique([studentId, quizId])
+}
+
+model News {
+  id               String   @id @default(uuid())
+  title            String
+  slug             String   @unique
+  content          String
+  summary          String
+  featuredImageUrl String
+  author           String   @default("Admin")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(uuid())
+  name      String
+  role      String
+  company   String
+  content   String
+  rating    Int      @default(5)
+  avatarUrl String?  @default("/assets/testimonial-placeholder.png")
+  createdAt DateTime @default(now())
+}
+
+model TeamMember {
+  id         String   @id @default(uuid())
+  name       String
+  role       String
+  bio        String
+  imageUrl   String
+  email      String?
+  phone      String?
+  indexOrder Int      @default(0)
+  createdAt  DateTime @default(now())
+}
+
+model Gallery {
+  id        String   @id @default(uuid())
+  title     String
+  imageUrl  String
+  category  String   @default("General")
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id        String   @id @default(uuid())
+  fullName  String
+  email     String
+  phone     String
+  subject   String
+  content   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Setting {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       String
+  description String?
+  updatedAt   DateTime @updatedAt
+}
