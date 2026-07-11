@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { AlertTriangle, ArrowLeft, RefreshCw, Shield } from "lucide-react";
@@ -48,7 +48,7 @@ const ERROR_MAP: Record<string, { title: string; description: string; color: str
     },
 };
 
-export default function AuthErrorPage() {
+function AuthErrorContent() {
     const searchParams = useSearchParams();
     const [errorKey, setErrorKey] = useState("Default");
 
@@ -67,7 +67,6 @@ export default function AuthErrorPage() {
             <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
 
             <div className="w-full max-w-lg space-y-8 relative z-10">
-                {/* Logo */}
                 <div className="text-center">
                     <Link href="/" className="inline-block">
                         <div className="w-14 h-14 rounded-xl bg-blue-600 flex items-center justify-center mx-auto shadow-lg shadow-blue-500/20">
@@ -76,14 +75,11 @@ export default function AuthErrorPage() {
                     </Link>
                 </div>
 
-                {/* Error Card */}
                 <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800/50 rounded-2xl p-8 shadow-2xl text-center space-y-6">
-                    {/* Icon */}
                     <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl border ${errorInfo.color}`}>
                         <AlertTriangle className="w-8 h-8" />
                     </div>
 
-                    {/* Message */}
                     <div className="space-y-2">
                         <h1 className="text-2xl font-extrabold text-white font-display">
                             {errorInfo.title}
@@ -93,7 +89,6 @@ export default function AuthErrorPage() {
                         </p>
                     </div>
 
-                    {/* Error code badge */}
                     {errorKey !== "Default" && (
                         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/60 border border-slate-700/50">
                             <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
@@ -101,7 +96,6 @@ export default function AuthErrorPage() {
                         </div>
                     )}
 
-                    {/* Actions */}
                     <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
                         <Link
                             href="/admin/login"
@@ -120,11 +114,24 @@ export default function AuthErrorPage() {
                     </div>
                 </div>
 
-                {/* Footer */}
                 <p className="text-center text-xs text-slate-600">
                     SmartLink Rwanda &mdash; Secure Admin Portal
                 </p>
             </div>
         </div>
+    );
+}
+
+export default function AuthErrorPage() {
+    return (
+        <Suspense
+            fallback={
+                <div className="flex h-screen items-center justify-center bg-slate-950">
+                    <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-blue-500" />
+                </div>
+            }
+        >
+            <AuthErrorContent />
+        </Suspense>
     );
 }
