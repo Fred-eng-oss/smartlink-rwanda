@@ -1,9 +1,13 @@
 export default function AdminLoading() {
   return (
-    <div className="flex h-screen items-center justify-center bg-slate-50 dark:bg-slate-950">
+    <div className="flex h-screen items-center justify-center bg-[#F8FAFC]">
       <div className="flex flex-col items-center gap-4">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-emerald-500 dark:border-slate-700 dark:border-t-emerald-500" />
-        <p className="text-sm text-slate-400">Loading...</p>
+        <div className="relative">
+          <div className="h-10 w-10 animate-spin rounded-full border-[3px] border-slate-200 border-t-[#0F62FE]" />
+        </div>
+        <p className="text-sm font-medium text-[#6B7280] font-sans">
+          Loading...
+        </p>
       </div>
     </div>
   );

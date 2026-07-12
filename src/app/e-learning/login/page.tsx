@@ -30,6 +30,7 @@ export default function ELearningLoginPage() {
             if (result?.error) {
                 toast.error("Invalid credentials. Please try again.");
             } else {
+                setForm({ email: "", password: "" });
                 toast.success("Login successful!");
                 router.push("/e-learning/dashboard");
                 router.refresh();
@@ -42,58 +43,71 @@ export default function ELearningLoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4 select-none relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(79,70,229,0.3),transparent)]" />
-            <div className="absolute top-1/3 left-10 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl" />
+        <div
+            className="min-h-screen flex items-center justify-center px-4 select-none relative overflow-hidden"
+            style={{ backgroundColor: "#0B1F3A" }}
+        >
+            <div className="absolute inset-0">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-25" style={{ backgroundColor: "#00A86B" }} />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] opacity-20" style={{ backgroundColor: "#0F62FE" }} />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full blur-[160px] opacity-10" style={{ backgroundColor: "#00A86B" }} />
+            </div>
 
-            <div className="w-full max-w-md space-y-8 relative z-10">
-                <div className="text-center space-y-4">
+            <div className="w-full max-w-md relative z-10">
+                <div className="text-center space-y-5 mb-8">
                     <Link href="/" className="inline-block">
-                        <div className="relative w-14 h-14 overflow-hidden rounded-xl bg-blue-600 flex items-center justify-center mx-auto shadow-lg shadow-blue-500/20">
+                        <div className="relative w-16 h-16 overflow-hidden rounded-2xl flex items-center justify-center mx-auto shadow-2xl" style={{ backgroundColor: "#00A86B" }}>
                             <Image src="/assets/logo.png" alt="SmartLink" fill className="object-cover" />
                         </div>
                     </Link>
                     <div>
-                        <h1 className="text-2xl font-extrabold text-white font-display">Student Portal</h1>
-                        <p className="text-sm text-slate-400 mt-1">Access your e-learning dashboard</p>
+                        <h1 className="text-3xl font-extrabold text-white font-display">Student Portal</h1>
+                        <p className="text-sm mt-2 font-sans" style={{ color: "#6B7280" }}>Access your SmartLink E-Learning dashboard</p>
                     </div>
                 </div>
 
-                <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800/50 rounded-2xl p-8 shadow-2xl">
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="bg-white rounded-2xl p-8 shadow-2xl">
+                    <form onSubmit={handleSubmit} autoComplete="off" className="space-y-5">
                         <div>
-                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                            <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 font-sans" style={{ color: "#6B7280" }}>
                                 Email Address
                             </label>
                             <div className="relative">
-                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#6B7280" }} />
                                 <input
                                     type="email"
+                                    autoComplete="new-email"
+                                    name="email"
                                     value={form.email}
                                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                                     placeholder="student@smartlink.rw"
-                                    className="w-full pl-10 pr-4 py-3 bg-slate-800/50 border border-slate-700/60 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                    className="w-full pl-11 pr-4 py-3.5 rounded-xl text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00A86B] focus:border-transparent transition-all border-0"
+                                    style={{ backgroundColor: "#F8FAFC", color: "#1F2937" }}
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                            <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 font-sans" style={{ color: "#6B7280" }}>
                                 Password
                             </label>
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#6B7280" }} />
                                 <input
                                     type={showPassword ? "text" : "password"}
+                                    autoComplete="new-password"
+                                    name="password"
                                     value={form.password}
                                     onChange={(e) => setForm({ ...form, password: e.target.value })}
                                     placeholder="Enter your password"
-                                    className="w-full pl-10 pr-12 py-3 bg-slate-800/50 border border-slate-700/60 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                                    className="w-full pl-11 pr-12 py-3.5 rounded-xl text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#00A86B] focus:border-transparent transition-all border-0"
+                                    style={{ backgroundColor: "#F8FAFC", color: "#1F2937" }}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 transition-colors"
+                                    style={{ color: "#6B7280" }}
                                 >
                                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                 </button>
@@ -103,7 +117,8 @@ export default function ELearningLoginPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-bold text-sm uppercase tracking-wider py-3.5 rounded-xl shadow-lg shadow-indigo-500/20 flex items-center justify-center gap-2 transition-all"
+                            className="w-full text-white font-bold text-sm uppercase tracking-wider py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all disabled:opacity-60"
+                            style={{ background: "linear-gradient(135deg, #00A86B, #008F5C)" }}
                         >
                             {loading ? (
                                 <>
@@ -117,15 +132,15 @@ export default function ELearningLoginPage() {
                     </form>
                 </div>
 
-                <div className="text-center space-y-3">
-                    <p className="text-xs text-slate-500">
+                <div className="text-center space-y-3 mt-6">
+                    <p className="text-xs font-sans" style={{ color: "#6B7280" }}>
                         Don&apos;t have an account?{" "}
-                        <Link href="/register" className="text-indigo-400 hover:text-indigo-300 font-bold">
+                        <Link href="/register" className="font-bold" style={{ color: "#00A86B" }}>
                             Register here
                         </Link>
                     </p>
-                    <p className="text-xs text-slate-500">
-                        <Link href="/" className="hover:text-slate-300 transition-colors">
+                    <p className="text-xs font-sans" style={{ color: "#6B7280" }}>
+                        <Link href="/" className="hover:text-white transition-colors">
                             ← Back to SmartLink Rwanda
                         </Link>
                     </p>

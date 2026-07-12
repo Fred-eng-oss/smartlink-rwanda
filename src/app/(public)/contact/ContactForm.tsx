@@ -50,14 +50,14 @@ export default function ContactForm() {
     if (submitted) {
         return (
             <div className="text-center py-12 space-y-4">
-                <CheckCircle className="w-16 h-16 text-emerald-500 mx-auto" />
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white font-display">Thank You!</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+                <CheckCircle className="w-16 h-16 text-[#00A86B] mx-auto" />
+                <h3 className="text-xl font-bold text-[#1F2937] font-display">Thank You!</h3>
+                <p className="text-sm text-[#6B7280] font-sans">
                     Your message has been received. Our team will get back to you within 24 hours.
                 </p>
                 <button
                     onClick={() => setSubmitted(false)}
-                    className="text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-sm font-bold text-[#0F62FE] hover:underline"
                 >
                     Send Another Message
                 </button>
@@ -69,7 +69,7 @@ export default function ContactForm() {
         <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                         Full Name *
                     </label>
                     <input
@@ -79,11 +79,11 @@ export default function ContactForm() {
                         onChange={handleChange}
                         placeholder="Your full name"
                         required
-                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                         Email Address *
                     </label>
                     <input
@@ -93,14 +93,14 @@ export default function ContactForm() {
                         onChange={handleChange}
                         placeholder="your@email.com"
                         required
-                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                         Phone Number
                     </label>
                     <input
@@ -109,11 +109,11 @@ export default function ContactForm() {
                         value={form.phone}
                         onChange={handleChange}
                         placeholder="+250 7XX XXX XXX"
-                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                         Subject *
                     </label>
                     <select
@@ -121,7 +121,7 @@ export default function ContactForm() {
                         value={form.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     >
                         <option value="">Select a subject</option>
                         <option value="General Inquiry">General Inquiry</option>
@@ -135,7 +135,7 @@ export default function ContactForm() {
             </div>
 
             <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                     Message *
                 </label>
                 <textarea
@@ -145,14 +145,14 @@ export default function ContactForm() {
                     placeholder="Describe your inquiry or project details..."
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none"
+                    className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all resize-none font-sans"
                 />
             </div>
 
             <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold text-sm uppercase tracking-wider px-8 py-3.5 rounded-full shadow-lg shadow-blue-500/20 transition-all"
+                className="inline-flex items-center gap-2 bg-[#00A86B] hover:bg-[#008F5B] disabled:bg-[#00A86B]/50 text-white font-bold text-sm uppercase tracking-wider px-8 py-3.5 rounded-2xl shadow-lg shadow-[#00A86B]/20 transition-all font-sans"
             >
                 {loading ? (
                     <>

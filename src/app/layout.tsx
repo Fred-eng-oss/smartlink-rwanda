@@ -17,7 +17,8 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: {
     template: "%s | SmartLink Rwanda",
-    default: "SmartLink Rwanda - Premium ICT Services, Training & Consultancy",
+    default:
+      "SmartLink Rwanda - Premium ICT Services, Training & Consultancy",
   },
   description:
     "SmartLink Rwanda bridges the digital divide with expert software development, IT consulting, professional certification trainings, web hosting, and corporate logistics.",
@@ -52,7 +53,7 @@ export default function RootLayout({
       className={`${inter.variable} ${outfit.variable} h-full antialiased`}
       suppressHydrationWarning
     >
-      <body className="flex flex-col min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 transition-colors duration-300 font-sans">
+      <body className="flex flex-col min-h-screen bg-[#F8FAFC] dark:bg-[#0B1F3A] text-[#1F2937] dark:text-[#F8FAFC] transition-colors duration-300 font-sans">
         <ThemeProvider>
           <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
           {children}

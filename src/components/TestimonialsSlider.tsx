@@ -28,11 +28,15 @@ export default function TestimonialsSlider({
     }, [testimonials.length]);
 
     const handlePrev = () => {
-        setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+        setActiveIndex((prev) =>
+            prev === 0 ? testimonials.length - 1 : prev - 1
+        );
     };
 
     const handleNext = () => {
-        setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+        setActiveIndex((prev) =>
+            prev === testimonials.length - 1 ? 0 : prev + 1
+        );
     };
 
     if (!testimonials || testimonials.length === 0) return null;
@@ -40,73 +44,78 @@ export default function TestimonialsSlider({
     const current = testimonials[activeIndex];
 
     return (
-        <div className="relative max-w-4xl mx-auto px-4 py-8">
-            {/* Quote Symbol background decoration */}
-            <div className="absolute top-0 left-0 text-slate-200/40 dark:text-slate-800/30 select-none pointer-events-none">
-                <Quote className="w-24 h-24 stroke-[0.5]" />
+        <div className="relative max-w-3xl mx-auto px-4 py-8">
+            {/* Quote watermark */}
+            <div className="absolute -top-4 left-4 text-blue-100 select-none pointer-events-none">
+                <Quote className="w-28 h-28 stroke-[0.5]" />
             </div>
 
-            <div className="min-h-[220px] flex flex-col justify-between relative z-10">
+            <div className="min-h-[240px] flex flex-col justify-center relative z-10">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeIndex}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.4 }}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -20 }}
+                        transition={{ duration: 0.45, ease: "easeInOut" }}
                         className="space-y-6"
                     >
-                        {/* Rating Stars */}
-                        <div className="flex gap-1 justify-center lg:justify-start">
+                        {/* Star rating */}
+                        <div className="flex gap-1">
                             {Array.from({ length: 5 }).map((_, i) => (
                                 <Star
                                     key={i}
-                                    className={`w-4 h-4 fill-current ${i < current.rating
-                                            ? "text-amber-500"
-                                            : "text-slate-205 dark:text-slate-800"
-                                        }`}
+                                    className={`w-5 h-5 ${
+                                        i < current.rating
+                                            ? "fill-[#F59E0B] text-[#F59E0B]"
+                                            : "fill-slate-200 text-slate-200"
+                                    }`}
                                 />
                             ))}
                         </div>
 
-                        {/* Testimonial Quote Text */}
-                        <p className="text-lg sm:text-xl font-medium italic text-slate-700 dark:text-slate-200 leading-relaxed text-center lg:text-left">
-                            "{current.content}"
+                        {/* Quote text */}
+                        <p className="text-lg sm:text-xl font-medium italic text-[#1F2937] leading-relaxed">
+                            &ldquo;{current.content}&rdquo;
                         </p>
 
-                        {/* Client Bio */}
-                        <div className="flex flex-col items-center lg:items-start">
-                            <h4 className="font-bold text-base text-slate-900 dark:text-white font-display">
+                        {/* Author */}
+                        <div className="pt-2">
+                            <h4 className="font-bold text-base text-[#1F2937] font-display">
                                 {current.name}
                             </h4>
-                            <p className="text-xs font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
-                                {current.role} at <span className="text-blue-600 dark:text-blue-400">{current.company}</span>
+                            <p className="text-sm text-[#6B7280] mt-0.5">
+                                {current.role} at{" "}
+                                <span className="font-semibold text-[#0F62FE]">
+                                    {current.company}
+                                </span>
                             </p>
                         </div>
                     </motion.div>
                 </AnimatePresence>
             </div>
 
-            {/* Nav Controls */}
-            <div className="flex justify-center lg:justify-start items-center gap-4 mt-8 pt-4 border-t border-slate-200/50 dark:border-slate-800/50">
+            {/* Navigation controls */}
+            <div className="flex justify-center items-center gap-4 mt-8 pt-4 border-t border-[#E5E7EB]">
                 <button
                     onClick={handlePrev}
-                    className="p-2 rounded-full border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-350 hover:bg-slate-55 dark:hover:bg-slate-800 transition-colors shadow-sm outline-none"
+                    className="p-2.5 rounded-full bg-[#00A86B] text-white hover:bg-[#00A86B]/90 transition-colors shadow-sm outline-none"
                     aria-label="Previous slide"
                 >
                     <ChevronLeft className="w-4 h-4" />
                 </button>
 
-                {/* Carousel Dots indicator */}
+                {/* Dots */}
                 <div className="flex gap-2">
                     {testimonials.map((_, i) => (
                         <button
                             key={i}
                             onClick={() => setActiveIndex(i)}
-                            className={`w-2.5 h-2.5 rounded-full transition-all outline-none ${i === activeIndex
-                                    ? "bg-blue-600 dark:bg-blue-400 w-5"
-                                    : "bg-slate-300 dark:bg-slate-700 hover:bg-slate-400"
-                                }`}
+                            className={`h-2.5 rounded-full transition-all duration-300 outline-none ${
+                                i === activeIndex
+                                    ? "bg-[#0F62FE] w-6"
+                                    : "bg-[#E5E7EB] hover:bg-[#D1D5DB]"
+                            }`}
                             aria-label={`Go to slide ${i + 1}`}
                         />
                     ))}
@@ -114,7 +123,7 @@ export default function TestimonialsSlider({
 
                 <button
                     onClick={handleNext}
-                    className="p-2 rounded-full border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-350 hover:bg-slate-55 dark:hover:bg-slate-800 transition-colors shadow-sm outline-none"
+                    className="p-2.5 rounded-full bg-[#00A86B] text-white hover:bg-[#00A86B]/90 transition-colors shadow-sm outline-none"
                     aria-label="Next slide"
                 >
                     <ChevronRight className="w-4 h-4" />

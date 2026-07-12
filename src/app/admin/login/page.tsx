@@ -47,31 +47,37 @@ export default function AdminLoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4 select-none relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(30,58,138,0.3),transparent)]" />
-            <div className="absolute top-1/3 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
+        <div
+            className="min-h-screen flex items-center justify-center px-4 select-none relative overflow-hidden"
+            style={{ backgroundColor: "#0B1F3A" }}
+        >
+            <div className="absolute inset-0">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-30" style={{ backgroundColor: "#0F62FE" }} />
+                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full blur-[120px] opacity-20" style={{ backgroundColor: "#00A86B" }} />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[160px] opacity-10" style={{ backgroundColor: "#0F62FE" }} />
+            </div>
 
-            <div className="w-full max-w-md space-y-8 relative z-10">
-                <div className="text-center space-y-4">
+            <div className="w-full max-w-md relative z-10">
+                <div className="text-center space-y-5 mb-8">
                     <Link href="/" className="inline-block">
-                        <div className="relative w-14 h-14 overflow-hidden rounded-xl bg-blue-600 flex items-center justify-center mx-auto shadow-lg shadow-blue-500/20">
+                        <div className="relative w-16 h-16 overflow-hidden rounded-2xl flex items-center justify-center mx-auto shadow-2xl" style={{ backgroundColor: "#0F62FE" }}>
                             <Image src="/assets/logo.png" alt="SmartLink" fill className="object-cover" />
                         </div>
                     </Link>
                     <div>
-                        <h1 className="text-2xl font-extrabold text-white font-display">Admin Portal</h1>
-                        <p className="text-sm text-slate-400 mt-1">Sign in to manage SmartLink Rwanda</p>
+                        <h1 className="text-3xl font-extrabold text-white font-display">Admin Portal</h1>
+                        <p className="text-sm mt-2 font-sans" style={{ color: "#6B7280" }}>Sign in to manage SmartLink Rwanda</p>
                     </div>
                 </div>
 
-                <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800/50 rounded-2xl p-8 shadow-2xl">
+                <div className="bg-white rounded-2xl p-8 shadow-2xl">
                     <form onSubmit={handleSubmit} autoComplete="off" className="space-y-5">
                         <div>
-                            <label className="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+                            <label className="block text-xs font-bold uppercase tracking-wider mb-1.5 font-sans" style={{ color: "#6B7280" }}>
                                 Email Address
                             </label>
                             <div className="relative">
-                                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                                <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#6B7280" }} />
                                 <input
                                     type="email"
                                     autoComplete="new-email"
@@ -79,22 +85,23 @@ export default function AdminLoginPage() {
                                     value={form.email}
                                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                                     placeholder="admin@smartlink.rw"
-                                    className="w-full pl-10 pr-4 py-3 bg-slate-800/50 border border-slate-700/60 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                    className="w-full pl-11 pr-4 py-3.5 rounded-xl text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all border-0"
+                                    style={{ backgroundColor: "#F8FAFC", color: "#1F2937" }}
                                 />
                             </div>
                         </div>
 
                         <div>
-                            <div className="flex items-center justify-between">
-                            <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">
-                                Password
-                            </label>
-                            <Link href="/admin/forgot-password" className="text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors">
-                                Forgot password?
-                            </Link>
-                        </div>
+                            <div className="flex items-center justify-between mb-1.5">
+                                <label className="text-xs font-bold uppercase tracking-wider font-sans" style={{ color: "#6B7280" }}>
+                                    Password
+                                </label>
+                                <Link href="/admin/forgot-password" className="text-xs font-medium transition-colors hover:opacity-80" style={{ color: "#0F62FE" }}>
+                                    Forgot password?
+                                </Link>
+                            </div>
                             <div className="relative">
-                                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500" />
+                                <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "#6B7280" }} />
                                 <input
                                     type={showPassword ? "text" : "password"}
                                     autoComplete="new-password"
@@ -102,12 +109,14 @@ export default function AdminLoginPage() {
                                     value={form.password}
                                     onChange={(e) => setForm({ ...form, password: e.target.value })}
                                     placeholder="Enter your password"
-                                    className="w-full pl-10 pr-12 py-3 bg-slate-800/50 border border-slate-700/60 rounded-xl text-sm text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                                    className="w-full pl-11 pr-12 py-3.5 rounded-xl text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all border-0"
+                                    style={{ backgroundColor: "#F8FAFC", color: "#1F2937" }}
                                 />
                                 <button
                                     type="button"
                                     onClick={() => setShowPassword(!showPassword)}
-                                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
+                                    className="absolute right-3.5 top-1/2 -translate-y-1/2 transition-colors"
+                                    style={{ color: "#6B7280" }}
                                 >
                                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                                 </button>
@@ -117,7 +126,8 @@ export default function AdminLoginPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-bold text-sm uppercase tracking-wider py-3.5 rounded-xl shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2 transition-all"
+                            className="w-full text-white font-bold text-sm uppercase tracking-wider py-3.5 rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all disabled:opacity-60"
+                            style={{ background: "linear-gradient(135deg, #0F62FE, #0D4FCC)" }}
                         >
                             {loading ? (
                                 <>
@@ -131,8 +141,8 @@ export default function AdminLoginPage() {
                     </form>
                 </div>
 
-                <p className="text-center text-xs text-slate-500">
-                    <Link href="/" className="hover:text-slate-300 transition-colors">
+                <p className="text-center text-xs mt-6 font-sans" style={{ color: "#6B7280" }}>
+                    <Link href="/" className="hover:text-white transition-colors">
                         ← Back to SmartLink Rwanda
                     </Link>
                 </p>

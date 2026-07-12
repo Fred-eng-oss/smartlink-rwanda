@@ -50,10 +50,23 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
     }
   }, [status, router]);
 
-  if (status === "unauthenticated" || status === "loading") {
+  if (status === "unauthenticated") {
     return (
-      <div className="flex h-screen items-center justify-center bg-slate-950">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-blue-500" />
+      <div className="flex h-screen items-center justify-center bg-[#F8FAFC]">
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-[#0F62FE]" />
+      </div>
+    );
+  }
+
+  if (status === "loading") {
+    return (
+      <div className="flex h-screen items-center justify-center bg-[#F8FAFC]">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-10 w-10 animate-spin rounded-full border-[3px] border-slate-200 border-t-[#0F62FE]" />
+          <p className="text-sm font-medium text-[#6B7280] font-sans">
+            Loading...
+          </p>
+        </div>
       </div>
     );
   }
@@ -65,15 +78,17 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
 
   const sidebarContent = (
     <>
-      <div className="flex items-center gap-3 px-5 py-6 border-b border-slate-700/50">
-        <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/20">
-          <span className="text-white font-bold text-sm tracking-tight">SL</span>
+      <div className="flex items-center gap-3 px-5 py-6 border-b border-white/[0.06]">
+        <div className="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-[#00A86B] to-[#00CC82] shadow-lg shadow-[#00A86B]/25">
+          <span className="text-white font-bold text-sm tracking-tight font-display">
+            SL
+          </span>
         </div>
         <div className="flex flex-col">
-          <span className="text-sm font-semibold text-white tracking-tight leading-none">
+          <span className="text-[15px] font-semibold text-white tracking-tight leading-none font-display">
             SmartLink
           </span>
-          <span className="text-[11px] text-slate-400 mt-0.5 leading-none">
+          <span className="text-[11px] text-slate-400 mt-1 leading-none font-sans">
             Admin Panel
           </span>
         </div>
@@ -88,38 +103,38 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
               href={item.href}
               onClick={() => setMobileOpen(false)}
               className={`
-                group flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium
-                transition-all duration-200
+                group flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium
+                transition-all duration-200 font-sans
                 ${
                   active
-                    ? "bg-emerald-500/10 text-emerald-400 shadow-sm"
-                    : "text-slate-400 hover:bg-slate-800 hover:text-slate-200"
+                    ? "bg-[#0F62FE] text-white shadow-md shadow-[#0F62FE]/25"
+                    : "text-slate-400 hover:bg-white/[0.06] hover:text-slate-200"
                 }
               `}
             >
               <item.icon
                 className={`w-[18px] h-[18px] shrink-0 transition-colors duration-200 ${
                   active
-                    ? "text-emerald-400"
+                    ? "text-white"
                     : "text-slate-500 group-hover:text-slate-300"
                 }`}
               />
               <span className="flex-1 truncate">{item.label}</span>
               {active && (
-                <ChevronRight className="w-3.5 h-3.5 text-emerald-400/60" />
+                <ChevronRight className="w-3.5 h-3.5 text-white/60" />
               )}
             </Link>
           );
         })}
       </nav>
 
-      <div className="border-t border-slate-700/50 p-4">
+      <div className="border-t border-white/[0.06] p-4">
         <button
           onClick={async () => {
             await fetch("/api/admin/signout", { method: "POST" });
             window.location.href = "/admin/login";
           }}
-          className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-all duration-200"
+          className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium text-slate-400 hover:bg-red-500/10 hover:text-red-400 transition-all duration-200 font-sans"
         >
           <LogOut className="w-[18px] h-[18px] shrink-0" />
           Sign Out
@@ -129,11 +144,13 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <div className="flex h-screen bg-slate-50 dark:bg-slate-950">
-      <aside className="hidden lg:flex lg:flex-col lg:w-64 bg-slate-900 border-r border-slate-800">
+    <div className="flex h-screen bg-[#F8FAFC] overflow-hidden">
+      {/* Desktop Sidebar */}
+      <aside className="hidden lg:flex lg:flex-col lg:w-[260px] shrink-0 bg-[#0B1F3A]">
         {sidebarContent}
       </aside>
 
+      {/* Mobile Overlay */}
       {mobileOpen && (
         <div
           className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
@@ -141,18 +158,18 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
         />
       )}
 
+      {/* Mobile Sidebar */}
       <aside
         className={`
-          fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 border-r border-slate-800
-          flex flex-col transform transition-transform duration-300 ease-in-out
-          lg:hidden
+          fixed inset-y-0 left-0 z-50 w-[280px] bg-[#0B1F3A] flex flex-col
+          transform transition-transform duration-300 ease-in-out lg:hidden
           ${mobileOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >
         <div className="absolute top-4 right-3">
           <button
             onClick={() => setMobileOpen(false)}
-            className="p-1.5 rounded-md text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
+            className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/[0.06] transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
@@ -160,11 +177,13 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
         {sidebarContent}
       </aside>
 
+      {/* Main Content Area */}
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
-        <header className="sticky top-0 z-30 flex items-center h-16 px-4 sm:px-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800">
+        {/* Sticky Top Header */}
+        <header className="sticky top-0 z-30 flex items-center h-16 px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-200/80 shrink-0">
           <button
             onClick={() => setMobileOpen(true)}
-            className="p-2 -ml-2 rounded-lg text-slate-500 hover:text-slate-700 hover:bg-slate-100 dark:text-slate-400 dark:hover:text-slate-200 dark:hover:bg-slate-800 transition-colors lg:hidden"
+            className="p-2 -ml-2 rounded-lg text-[#6B7280] hover:text-[#1F2937] hover:bg-slate-100 transition-colors lg:hidden"
           >
             <Menu className="w-5 h-5" />
           </button>
@@ -173,20 +192,24 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
 
           <div className="flex items-center gap-3">
             <div className="hidden sm:flex flex-col items-end">
-              <span className="text-sm font-medium text-slate-700 dark:text-slate-200 leading-none">
+              <span className="text-sm font-semibold text-[#1F2937] leading-none font-sans">
                 {session?.user?.name || "Admin"}
               </span>
-              <span className="text-xs text-slate-500 dark:text-slate-400 mt-0.5 leading-none">
+              <span className="text-xs text-[#6B7280] mt-1 leading-none font-sans">
                 {session?.user?.email || "admin@smartlink.rw"}
               </span>
             </div>
-            <Link href="/admin/account" className="flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-white text-sm font-semibold shadow-md shadow-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/30 transition-all">
+            <Link
+              href="/admin/account"
+              className="flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#0F62FE] to-[#3D8BFF] text-white text-sm font-bold shadow-md shadow-[#0F62FE]/20 hover:shadow-lg hover:shadow-[#0F62FE]/30 transition-all font-display"
+            >
               {(session?.user?.name || "A").charAt(0).toUpperCase()}
             </Link>
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto">
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto bg-[#F8FAFC]">
           <div className="p-4 sm:p-6 lg:p-8">{children}</div>
         </main>
       </div>
@@ -194,7 +217,11 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default function AdminLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const pathname = usePathname();
   const isAuthFree = AUTH_FREE_PAGES.some((p) => pathname === p);
 

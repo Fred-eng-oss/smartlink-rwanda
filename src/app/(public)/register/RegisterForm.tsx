@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Send, Loader2, CheckCircle } from "lucide-react";
 import toast from "react-hot-toast";
 
@@ -12,6 +12,7 @@ type Program = {
 export default function RegisterForm({ programs }: { programs: Program[] }) {
     const [loading, setLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const [fetchedPrograms, setFetchedPrograms] = useState<Program[]>(programs);
     const [form, setForm] = useState({
         fullName: "",
         gender: "",
@@ -21,6 +22,21 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
         address: "",
         programId: "",
     });
+
+    useEffect(() => {
+        if (programs.length === 0) {
+            fetch("/api/admin/programs")
+                .then((res) => res.json())
+                .then((data) => {
+                    if (Array.isArray(data)) {
+                        setFetchedPrograms(data);
+                    }
+                })
+                .catch(() => {});
+        }
+    }, [programs.length]);
+
+    const activePrograms = programs.length > 0 ? programs : fetchedPrograms;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -56,14 +72,14 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
     if (submitted) {
         return (
             <div className="text-center py-16 space-y-4">
-                <CheckCircle className="w-16 h-16 text-emerald-500 mx-auto" />
-                <h3 className="text-xl font-bold text-slate-900 dark:text-white font-display">Registration Submitted!</h3>
-                <p className="text-sm text-slate-500 dark:text-slate-400 max-w-md mx-auto">
+                <CheckCircle className="w-16 h-16 text-[#00A86B] mx-auto" />
+                <h3 className="text-xl font-bold text-[#1F2937] font-display">Registration Submitted!</h3>
+                <p className="text-sm text-[#6B7280] max-w-md mx-auto font-sans">
                     Thank you for applying. Our admissions team will review your application and contact you within 48 hours with next steps.
                 </p>
                 <button
                     onClick={() => { setSubmitted(false); setForm({ fullName: "", gender: "", dob: "", email: "", phone: "", address: "", programId: "" }); }}
-                    className="text-sm font-bold text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-sm font-bold text-[#0F62FE] hover:underline"
                 >
                     Register Another Student
                 </button>
@@ -75,7 +91,7 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
         <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                         Full Name *
                     </label>
                     <input
@@ -85,11 +101,11 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         onChange={handleChange}
                         placeholder="Student's full name"
                         required
-                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                         Gender *
                     </label>
                     <select
@@ -97,7 +113,7 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         value={form.gender}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     >
                         <option value="">Select gender</option>
                         <option value="Male">Male</option>
@@ -108,7 +124,7 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                         Date of Birth *
                     </label>
                     <input
@@ -117,11 +133,11 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         value={form.dob}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                         Email Address *
                     </label>
                     <input
@@ -131,14 +147,14 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         onChange={handleChange}
                         placeholder="student@email.com"
                         required
-                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                         Phone Number *
                     </label>
                     <input
@@ -148,11 +164,11 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         onChange={handleChange}
                         placeholder="+250 7XX XXX XXX"
                         required
-                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                         Program *
                     </label>
                     <select
@@ -160,10 +176,10 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         value={form.programId}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     >
                         <option value="">Select a program</option>
-                        {programs.map((p) => (
+                        {activePrograms.map((p) => (
                             <option key={p.slug} value={p.slug}>
                                 {p.name}
                             </option>
@@ -173,7 +189,7 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
             </div>
 
             <div>
-                <label className="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1.5 uppercase tracking-wider">
+                <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
                     Home Address *
                 </label>
                 <input
@@ -183,18 +199,18 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                     onChange={handleChange}
                     placeholder="Your residential address"
                     required
-                    className="w-full px-4 py-3 bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                 />
             </div>
 
-            <div className="bg-slate-50 dark:bg-slate-800/30 border border-slate-200/50 dark:border-slate-700/50 rounded-xl p-4 text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
+            <div className="bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl p-4 text-xs text-[#6B7280] leading-relaxed font-sans">
                 By submitting this form, you confirm that the information provided is accurate. Our admissions team will contact you via email or phone within 48 hours with enrollment details.
             </div>
 
             <button
                 type="submit"
                 disabled={loading}
-                className="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-bold text-sm uppercase tracking-wider px-8 py-3.5 rounded-full shadow-lg shadow-indigo-500/20 transition-all"
+                className="inline-flex items-center gap-2 bg-[#00A86B] hover:bg-[#008F5B] disabled:bg-[#00A86B]/50 text-white font-bold text-sm uppercase tracking-wider px-8 py-3.5 rounded-2xl shadow-lg shadow-[#00A86B]/20 transition-all font-sans"
             >
                 {loading ? (
                     <>

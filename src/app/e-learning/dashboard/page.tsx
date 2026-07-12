@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { BookOpen, GraduationCap, LogOut, Clock, CheckCircle, BarChart3, Trophy } from "lucide-react";
+import { BookOpen, GraduationCap, LogOut, Clock, Award, BarChart3, CheckCircle, Calendar } from "lucide-react";
 
 export const metadata = {
     title: "Student Dashboard",
@@ -13,6 +13,39 @@ export default async function ELearningDashboardPage() {
     if (!session) {
         redirect("/e-learning/login");
     }
+
+    const studentName = session.user.name || "Student";
+
+    const stats = [
+        {
+            label: "Enrolled Courses",
+            value: "3",
+            icon: BookOpen,
+            iconBg: "#0F62FE15",
+            iconColor: "#0F62FE",
+        },
+        {
+            label: "Completed",
+            value: "11",
+            icon: CheckCircle,
+            iconBg: "#00A86B15",
+            iconColor: "#00A86B",
+        },
+        {
+            label: "Hours Learned",
+            value: "48",
+            icon: Clock,
+            iconBg: "#F59E0B15",
+            iconColor: "#F59E0B",
+        },
+        {
+            label: "Certificates",
+            value: "2",
+            icon: Award,
+            iconBg: "#0F62FE15",
+            iconColor: "#0F62FE",
+        },
+    ];
 
     const enrolledCourses = [
         { name: "Introduction to Web Development", progress: 65, lessons: 12, completed: 8 },
@@ -27,100 +60,116 @@ export default async function ELearningDashboardPage() {
     ];
 
     return (
-        <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
-            {/* Top Nav */}
-            <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-6 py-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                    <GraduationCap className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
-                    <h1 className="text-lg font-extrabold text-slate-900 dark:text-white font-display">
-                        Student Dashboard
-                    </h1>
-                </div>
-                <div className="flex items-center gap-4">
-                    <span className="text-xs font-bold text-slate-500">
-                        {session.user.name || session.user.email}
-                    </span>
-                    <form action="/api/auth/signout" method="post">
-                        <button
-                            type="submit"
-                            className="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-red-500 transition-colors uppercase tracking-wider"
-                        >
-                            <LogOut className="w-3.5 h-3.5" />
-                            Sign Out
-                        </button>
-                    </form>
+        <div className="min-h-screen" style={{ backgroundColor: "#F8FAFC" }}>
+            <header className="bg-white border-b shadow-sm" style={{ borderColor: "#E5E7EB" }}>
+                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                        <div className="p-2 rounded-xl" style={{ backgroundColor: "#00A86B15" }}>
+                            <GraduationCap className="w-5 h-5" style={{ color: "#00A86B" }} />
+                        </div>
+                        <div>
+                            <h1 className="text-lg font-extrabold font-display" style={{ color: "#1F2937" }}>
+                                Student Dashboard
+                            </h1>
+                            <p className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "#6B7280" }}>
+                                SmartLink E-Learning
+                            </p>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <div className="text-right">
+                            <p className="text-sm font-bold font-display" style={{ color: "#1F2937" }}>
+                                {studentName}
+                            </p>
+                            <p className="text-[10px] font-semibold" style={{ color: "#6B7280" }}>
+                                {session.user.email}
+                            </p>
+                        </div>
+                        <div className="w-px h-8" style={{ backgroundColor: "#E5E7EB" }} />
+                        <form action="/api/auth/signout" method="post">
+                            <button
+                                type="submit"
+                                className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider px-3 py-2 rounded-lg transition-colors hover:bg-red-50"
+                                style={{ color: "#6B7280" }}
+                            >
+                                <LogOut className="w-3.5 h-3.5" />
+                                Sign Out
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </header>
 
             <div className="max-w-7xl mx-auto px-6 py-10 space-y-10">
-                {/* Welcome */}
                 <div className="space-y-2">
-                    <h2 className="text-2xl font-extrabold text-slate-900 dark:text-white font-display">
-                        Welcome back, {session.user.name || "Student"}
+                    <h2 className="text-2xl font-extrabold font-display" style={{ color: "#1F2937" }}>
+                        Welcome back, {studentName}
                     </h2>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                    <p className="text-sm font-sans" style={{ color: "#6B7280" }}>
                         Continue your learning journey with SmartLink Academy.
                     </p>
                 </div>
 
-                {/* Stats */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div className="bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 rounded-2xl p-6 shadow-sm">
-                        <div className="p-2.5 bg-indigo-500/10 rounded-xl w-fit mb-4">
-                            <BookOpen className="w-5 h-5 text-indigo-500" />
-                        </div>
-                        <p className="text-2xl font-extrabold text-slate-900 dark:text-white font-display">3</p>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Enrolled Courses</p>
-                    </div>
-                    <div className="bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 rounded-2xl p-6 shadow-sm">
-                        <div className="p-2.5 bg-emerald-500/10 rounded-xl w-fit mb-4">
-                            <CheckCircle className="w-5 h-5 text-emerald-500" />
-                        </div>
-                        <p className="text-2xl font-extrabold text-slate-900 dark:text-white font-display">11</p>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Lessons Completed</p>
-                    </div>
-                    <div className="bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 rounded-2xl p-6 shadow-sm">
-                        <div className="p-2.5 bg-blue-500/10 rounded-xl w-fit mb-4">
-                            <BarChart3 className="w-5 h-5 text-blue-500" />
-                        </div>
-                        <p className="text-2xl font-extrabold text-slate-900 dark:text-white font-display">32%</p>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Overall Progress</p>
-                    </div>
-                    <div className="bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 rounded-2xl p-6 shadow-sm">
-                        <div className="p-2.5 bg-amber-500/10 rounded-xl w-fit mb-4">
-                            <Trophy className="w-5 h-5 text-amber-500" />
-                        </div>
-                        <p className="text-2xl font-extrabold text-slate-900 dark:text-white font-display">2</p>
-                        <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mt-1">Quizzes Passed</p>
-                    </div>
+                    {stats.map((stat) => {
+                        const Icon = stat.icon;
+                        return (
+                            <div
+                                key={stat.label}
+                                className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                                style={{ border: "1px solid #E5E7EB" }}
+                            >
+                                <div
+                                    className="p-2.5 rounded-xl w-fit mb-4"
+                                    style={{ backgroundColor: stat.iconBg }}
+                                >
+                                    <Icon className="w-5 h-5" style={{ color: stat.iconColor }} />
+                                </div>
+                                <p className="text-2xl font-extrabold font-display" style={{ color: "#1F2937" }}>
+                                    {stat.value}
+                                </p>
+                                <p className="text-xs font-bold uppercase tracking-wider mt-1 font-sans" style={{ color: "#6B7280" }}>
+                                    {stat.label}
+                                </p>
+                            </div>
+                        );
+                    })}
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-                    {/* Courses */}
                     <div className="lg:col-span-8 space-y-6">
-                        <h3 className="text-lg font-extrabold text-slate-900 dark:text-white font-display">
+                        <h3 className="text-lg font-extrabold font-display" style={{ color: "#1F2937" }}>
                             My Courses
                         </h3>
                         <div className="space-y-4">
                             {enrolledCourses.map((course) => (
-                                <div key={course.name} className="bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                                <div
+                                    key={course.name}
+                                    className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow"
+                                    style={{ border: "1px solid #E5E7EB" }}
+                                >
                                     <div className="flex items-center justify-between mb-3">
-                                        <h4 className="font-bold text-sm text-slate-900 dark:text-white font-display">
+                                        <h4 className="font-bold text-sm font-display" style={{ color: "#1F2937" }}>
                                             {course.name}
                                         </h4>
-                                        <span className="text-xs font-bold text-slate-400">
+                                        <span className="text-xs font-bold" style={{ color: "#6B7280" }}>
                                             {course.completed}/{course.lessons} lessons
                                         </span>
                                     </div>
-                                    <div className="w-full bg-slate-100 dark:bg-slate-800 rounded-full h-2.5 mb-3">
+                                    <div className="w-full rounded-full h-2.5 mb-3" style={{ backgroundColor: "#E5E7EB" }}>
                                         <div
-                                            className="bg-indigo-500 h-2.5 rounded-full transition-all"
-                                            style={{ width: `${course.progress}%` }}
+                                            className="h-2.5 rounded-full transition-all"
+                                            style={{ width: `${course.progress}%`, background: course.progress > 0 ? "linear-gradient(135deg, #00A86B, #0F62FE)" : "#E5E7EB" }}
                                         />
                                     </div>
                                     <div className="flex items-center justify-between">
-                                        <span className="text-xs font-bold text-slate-400">{course.progress}% complete</span>
-                                        <button className="text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                                        <span className="text-xs font-bold" style={{ color: "#6B7280" }}>
+                                            {course.progress}% complete
+                                        </span>
+                                        <button
+                                            className="text-xs font-bold hover:underline"
+                                            style={{ color: "#00A86B" }}
+                                        >
                                             Continue Learning →
                                         </button>
                                     </div>
@@ -129,31 +178,44 @@ export default async function ELearningDashboardPage() {
                         </div>
                     </div>
 
-                    {/* Upcoming */}
                     <div className="lg:col-span-4 space-y-6">
-                        <h3 className="text-lg font-extrabold text-slate-900 dark:text-white font-display">
+                        <h3 className="text-lg font-extrabold font-display" style={{ color: "#1F2937" }}>
                             Upcoming Deadlines
                         </h3>
                         <div className="space-y-3">
                             {upcomingDeadlines.map((item) => (
-                                <div key={item.title} className="bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/50 rounded-2xl p-4 shadow-sm">
+                                <div
+                                    key={item.title}
+                                    className="bg-white rounded-2xl p-4 shadow-sm"
+                                    style={{ border: "1px solid #E5E7EB" }}
+                                >
                                     <div className="flex items-center gap-2 mb-2">
-                                        <Clock className="w-3.5 h-3.5 text-amber-500" />
-                                        <span className="text-[10px] font-bold text-amber-500 uppercase tracking-wider">
+                                        <Calendar className="w-3.5 h-3.5" style={{ color: "#F59E0B" }} />
+                                        <span
+                                            className="text-[10px] font-bold uppercase tracking-wider"
+                                            style={{ color: "#F59E0B" }}
+                                        >
                                             {item.type}
                                         </span>
                                     </div>
-                                    <h4 className="font-bold text-xs text-slate-900 dark:text-white mb-1">{item.title}</h4>
-                                    <p className="text-[10px] text-slate-400 font-semibold">{item.date}</p>
+                                    <h4 className="font-bold text-xs mb-1" style={{ color: "#1F2937" }}>
+                                        {item.title}
+                                    </h4>
+                                    <p className="text-[10px] font-semibold" style={{ color: "#6B7280" }}>
+                                        {item.date}
+                                    </p>
                                 </div>
                             ))}
                         </div>
 
-                        <div className="bg-blue-50 dark:bg-blue-950/20 border border-blue-200/50 dark:border-blue-900/30 rounded-2xl p-6">
-                            <h4 className="font-bold text-sm text-blue-900 dark:text-blue-300 mb-2 font-display">
+                        <div
+                            className="rounded-2xl p-6"
+                            style={{ backgroundColor: "#00A86B10", border: "1px solid #00A86B20" }}
+                        >
+                            <h4 className="font-bold text-sm mb-2 font-display" style={{ color: "#00A86B" }}>
                                 E-Learning Portal
                             </h4>
-                            <p className="text-xs text-blue-700/80 dark:text-blue-300/70 leading-relaxed">
+                            <p className="text-xs leading-relaxed font-sans" style={{ color: "#6B7280" }}>
                                 Your courses, quizzes, and progress tracking are available here. Complete lessons and pass quizzes to earn your SmartLink certification.
                             </p>
                         </div>

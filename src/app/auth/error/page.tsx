@@ -3,48 +3,56 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { AlertTriangle, ArrowLeft, RefreshCw, Shield } from "lucide-react";
+import { Shield, ArrowLeft, AlertTriangle, Loader2 } from "lucide-react";
 
-const ERROR_MAP: Record<string, { title: string; description: string; color: string }> = {
+const ERROR_MAP: Record<string, { title: string; description: string; iconBg: string; iconColor: string }> = {
     Configuration: {
         title: "Server Configuration Error",
         description: "There is a problem with the server configuration. Please contact the system administrator.",
-        color: "text-red-500 bg-red-500/10 border-red-500/20",
+        iconBg: "#FEE2E2",
+        iconColor: "#EF4444",
     },
     AccessDenied: {
         title: "Access Denied",
         description: "You do not have permission to access this resource. Please contact an administrator if you believe this is an error.",
-        color: "text-orange-500 bg-orange-500/10 border-orange-500/20",
+        iconBg: "#FFF7ED",
+        iconColor: "#F97316",
     },
     Verification: {
         title: "Verification Expired",
         description: "The verification link has expired or has already been used. Please request a new one.",
-        color: "text-amber-500 bg-amber-500/10 border-amber-500/20",
+        iconBg: "#FFFBEB",
+        iconColor: "#F59E0B",
     },
     Default: {
         title: "Authentication Error",
         description: "An error occurred during authentication. Please check your credentials and try again.",
-        color: "text-blue-500 bg-blue-500/10 border-blue-500/20",
+        iconBg: "#EFF6FF",
+        iconColor: "#0F62FE",
     },
     CredentialsSignin: {
         title: "Invalid Credentials",
         description: "The email or password you entered is incorrect. Please double-check and try again.",
-        color: "text-red-500 bg-red-500/10 border-red-500/20",
+        iconBg: "#FEE2E2",
+        iconColor: "#EF4444",
     },
     CallbackRouteError: {
         title: "Callback Error",
         description: "Something went wrong while redirecting. Please try signing in again.",
-        color: "text-purple-500 bg-purple-500/10 border-purple-500/20",
+        iconBg: "#F5F3FF",
+        iconColor: "#8B5CF6",
     },
     OAuthSignin: {
         title: "OAuth Sign-In Error",
         description: "An error occurred while connecting to the identity provider. Please try again.",
-        color: "text-cyan-500 bg-cyan-500/10 border-cyan-500/20",
+        iconBg: "#ECFEFF",
+        iconColor: "#06B6D4",
     },
     SessionRequired: {
         title: "Session Required",
-        description: "You must be signed in to access this page.",
-        color: "text-indigo-500 bg-indigo-500/10 border-indigo-500/20",
+        description: "You must be signed in to access this page. Please sign in and try again.",
+        iconBg: "#EEF2FF",
+        iconColor: "#6366F1",
     },
 };
 
@@ -62,51 +70,62 @@ function AuthErrorContent() {
     const errorInfo = ERROR_MAP[errorKey] || ERROR_MAP.Default;
 
     return (
-        <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4 select-none relative overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(239,68,68,0.15),transparent)]" />
-            <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
+        <div
+            className="min-h-screen flex items-center justify-center px-4 select-none relative overflow-hidden"
+            style={{ backgroundColor: "#0B1F3A" }}
+        >
+            <div className="absolute inset-0">
+                <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-20" style={{ backgroundColor: "#EF4444" }} />
+                <div className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full blur-[120px] opacity-10" style={{ backgroundColor: "#0F62FE" }} />
+            </div>
 
-            <div className="w-full max-w-lg space-y-8 relative z-10">
-                <div className="text-center">
+            <div className="w-full max-w-lg relative z-10">
+                <div className="text-center mb-8">
                     <Link href="/" className="inline-block">
-                        <div className="w-14 h-14 rounded-xl bg-blue-600 flex items-center justify-center mx-auto shadow-lg shadow-blue-500/20">
-                            <Shield className="w-7 h-7 text-white" />
+                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto shadow-2xl" style={{ backgroundColor: "#0F62FE" }}>
+                            <Shield className="w-8 h-8 text-white" />
                         </div>
                     </Link>
                 </div>
 
-                <div className="bg-slate-900/80 backdrop-blur-md border border-slate-800/50 rounded-2xl p-8 shadow-2xl text-center space-y-6">
-                    <div className={`inline-flex items-center justify-center w-16 h-16 rounded-2xl border ${errorInfo.color}`}>
-                        <AlertTriangle className="w-8 h-8" />
+                <div className="bg-white rounded-2xl p-8 shadow-2xl text-center space-y-6">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl" style={{ backgroundColor: errorInfo.iconBg }}>
+                        <AlertTriangle className="w-8 h-8" style={{ color: errorInfo.iconColor }} />
                     </div>
 
                     <div className="space-y-2">
-                        <h1 className="text-2xl font-extrabold text-white font-display">
+                        <h1 className="text-2xl font-extrabold font-display" style={{ color: "#1F2937" }}>
                             {errorInfo.title}
                         </h1>
-                        <p className="text-sm text-slate-400 leading-relaxed max-w-sm mx-auto">
+                        <p className="text-sm leading-relaxed max-w-sm mx-auto font-sans" style={{ color: "#6B7280" }}>
                             {errorInfo.description}
                         </p>
                     </div>
 
                     {errorKey !== "Default" && (
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/60 border border-slate-700/50">
-                            <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-pulse" />
-                            <span className="text-xs font-mono text-slate-400">Error: {errorKey}</span>
+                        <div
+                            className="inline-flex items-center gap-2 px-4 py-2 rounded-full"
+                            style={{ backgroundColor: "#F8FAFC", border: "1px solid #E5E7EB" }}
+                        >
+                            <span className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: errorInfo.iconColor }} />
+                            <span className="text-xs font-mono font-medium" style={{ color: "#6B7280" }}>
+                                Error: {errorKey}
+                            </span>
                         </div>
                     )}
 
                     <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
                         <Link
                             href="/admin/login"
-                            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm uppercase tracking-wider px-6 py-3 rounded-xl shadow-lg shadow-blue-500/20 transition-all"
+                            className="inline-flex items-center justify-center gap-2 text-white font-bold text-sm uppercase tracking-wider px-6 py-3 rounded-xl shadow-lg transition-all"
+                            style={{ backgroundColor: "#0F62FE" }}
                         >
-                            <RefreshCw className="w-4 h-4" />
                             Try Again
                         </Link>
                         <Link
                             href="/"
-                            className="inline-flex items-center justify-center gap-2 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-sm uppercase tracking-wider px-6 py-3 rounded-xl border border-slate-700/50 transition-all"
+                            className="inline-flex items-center justify-center gap-2 font-bold text-sm uppercase tracking-wider px-6 py-3 rounded-xl border transition-all"
+                            style={{ color: "#6B7280", border: "1px solid #E5E7EB", backgroundColor: "#FFFFFF" }}
                         >
                             <ArrowLeft className="w-4 h-4" />
                             Back to Home
@@ -114,7 +133,7 @@ function AuthErrorContent() {
                     </div>
                 </div>
 
-                <p className="text-center text-xs text-slate-600">
+                <p className="text-center text-xs mt-6 font-sans" style={{ color: "#6B7280" }}>
                     SmartLink Rwanda &mdash; Secure Admin Portal
                 </p>
             </div>
@@ -126,8 +145,11 @@ export default function AuthErrorPage() {
     return (
         <Suspense
             fallback={
-                <div className="flex h-screen items-center justify-center bg-slate-950">
-                    <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-700 border-t-blue-500" />
+                <div
+                    className="flex h-screen items-center justify-center"
+                    style={{ backgroundColor: "#0B1F3A" }}
+                >
+                    <Loader2 className="h-8 w-8 animate-spin" style={{ color: "#0F62FE" }} />
                 </div>
             }
         >
