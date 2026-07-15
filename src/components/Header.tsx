@@ -27,6 +27,7 @@ export default function Header() {
     { name: "Services", href: "/services" },
     { name: "Programs", href: "/programs" },
     { name: "News", href: "/news" },
+    { name: "Control Measures", href: "/control-measures" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -41,7 +42,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         showSolid
-          ? "bg-white/80 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.04)] border-b border-[#E5E7EB]/60 py-3"
+          ? "bg-white/80 dark:bg-[#132D52]/80 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.04)] border-b border-[#E5E7EB]/60 dark:border-slate-700/60 py-3"
           : "bg-transparent py-5"
       }`}
     >
@@ -62,7 +63,7 @@ export default function Header() {
               <span className="font-display font-extrabold text-xl tracking-tight bg-gradient-to-r from-[#0F62FE] to-[#00A86B] bg-clip-text text-transparent">
                 SmartLink
               </span>
-              <span className="text-[10px] block font-semibold text-[#6B7280] tracking-[0.2em] -mt-0.5 uppercase font-sans">
+              <span className="text-[10px] block font-semibold text-[#6B7280] dark:text-slate-400 tracking-[0.2em] -mt-0.5 uppercase font-sans">
                 Rwanda
               </span>
             </div>
@@ -81,7 +82,7 @@ export default function Header() {
                   className={`relative px-4 py-2 text-sm font-semibold font-sans tracking-wide rounded-xl transition-all duration-300 ${
                     isActive
                       ? "text-[#0F62FE]"
-                      : "text-[#1F2937] hover:text-[#0F62FE] hover:bg-[#0F62FE]/5"
+                      : "text-[#1F2937] dark:text-[#F8FAFC] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] hover:bg-[#0F62FE]/5"
                   }`}
                 >
                   {link.name}
@@ -102,7 +103,7 @@ export default function Header() {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-2xl border border-[#E5E7EB] text-[#6B7280] bg-white hover:bg-[#F8FAFC] hover:text-[#0F62FE] hover:border-[#0F62FE]/30 transition-all duration-300 shadow-sm"
+              className="p-2.5 rounded-2xl border border-[#E5E7EB] dark:border-slate-700 text-[#6B7280] dark:text-slate-400 bg-white dark:bg-[#132D52] hover:bg-[#F8FAFC] dark:hover:bg-[#0B1F3A] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] hover:border-[#0F62FE]/30 transition-all duration-300 shadow-sm"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
@@ -115,7 +116,7 @@ export default function Header() {
             {/* Student Portal */}
             <Link
               href="/e-learning/login"
-              className="flex items-center gap-2 text-xs font-bold font-sans uppercase tracking-wider text-[#1F2937] hover:text-[#0F62FE] border-2 border-[#E5E7EB] hover:border-[#0F62FE]/40 px-5 py-2.5 rounded-2xl transition-all duration-300 hover:shadow-md"
+              className="flex items-center gap-2 text-xs font-bold font-sans uppercase tracking-wider text-[#1F2937] dark:text-[#F8FAFC] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] border-2 border-[#E5E7EB] dark:border-slate-700 hover:border-[#0F62FE]/40 px-5 py-2.5 rounded-2xl transition-all duration-300 hover:shadow-md"
             >
               <LogIn className="w-3.5 h-3.5" />
               Student Portal
@@ -134,7 +135,7 @@ export default function Header() {
           <div className="flex lg:hidden items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-2xl text-[#6B7280] bg-white border border-[#E5E7EB] hover:bg-[#F8FAFC] hover:text-[#0F62FE] transition-all duration-300 shadow-sm"
+              className="p-2.5 rounded-2xl text-[#6B7280] dark:text-slate-400 bg-white dark:bg-[#132D52] border border-[#E5E7EB] dark:border-slate-700 hover:bg-[#F8FAFC] dark:hover:bg-[#0B1F3A] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] transition-all duration-300 shadow-sm"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
@@ -146,7 +147,7 @@ export default function Header() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-2xl text-[#1F2937] bg-white border border-[#E5E7EB] hover:bg-[#F8FAFC] hover:text-[#0F62FE] transition-all duration-300 shadow-sm"
+              className="p-2.5 rounded-2xl text-[#1F2937] dark:text-[#F8FAFC] bg-white dark:bg-[#132D52] border border-[#E5E7EB] dark:border-slate-700 hover:bg-[#F8FAFC] dark:hover:bg-[#0B1F3A] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] transition-all duration-300 shadow-sm"
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? (
@@ -167,7 +168,7 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto", y: 0 }}
             exit={{ opacity: 0, height: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="lg:hidden bg-white/95 backdrop-blur-xl border-b border-[#E5E7EB] overflow-hidden shadow-2xl"
+            className="lg:hidden bg-white/95 dark:bg-[#132D52]/95 backdrop-blur-xl border-b border-[#E5E7EB] dark:border-slate-700 overflow-hidden shadow-2xl"
           >
             <div className="px-4 pt-4 pb-6 space-y-1">
               {navLinks.map((link, i) => {
@@ -187,7 +188,7 @@ export default function Header() {
                       className={`block px-4 py-3 rounded-2xl text-base font-semibold font-sans transition-all duration-300 ${
                         isActive
                           ? "bg-[#0F62FE]/10 text-[#0F62FE] border-l-4 border-[#0F62FE]"
-                          : "text-[#1F2937] hover:bg-[#F8FAFC] hover:text-[#0F62FE]"
+                          : "text-[#1F2937] dark:text-[#F8FAFC] hover:bg-[#F8FAFC] dark:hover:bg-[#0B1F3A] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF]"
                       }`}
                     >
                       {link.name}
@@ -195,11 +196,11 @@ export default function Header() {
                   </motion.div>
                 );
               })}
-              <div className="pt-4 border-t border-[#E5E7EB] mt-4 space-y-3">
+              <div className="pt-4 border-t border-[#E5E7EB] dark:border-slate-700 mt-4 space-y-3">
                 <Link
                   href="/e-learning/login"
                   onClick={handleLinkClick}
-                  className="flex items-center justify-center gap-2 w-full text-center text-sm font-bold font-sans text-[#1F2937] py-3 rounded-2xl border-2 border-[#E5E7EB] hover:border-[#0F62FE]/40 hover:text-[#0F62FE] transition-all duration-300"
+                  className="flex items-center justify-center gap-2 w-full text-center text-sm font-bold font-sans text-[#1F2937] dark:text-[#F8FAFC] py-3 rounded-2xl border-2 border-[#E5E7EB] dark:border-slate-700 hover:border-[#0F62FE]/40 hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] transition-all duration-300"
                 >
                   <LogIn className="w-4 h-4" />
                   Student Portal
