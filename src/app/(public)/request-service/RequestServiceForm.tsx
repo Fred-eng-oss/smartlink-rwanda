@@ -78,8 +78,8 @@ function FormInner({ services }: { services: Service[] }) {
         return (
             <div className="text-center py-16 space-y-4">
                 <CheckCircle className="w-16 h-16 text-[#00A86B] mx-auto" />
-                <h3 className="text-xl font-bold text-[#1F2937] font-display">Request Submitted!</h3>
-                <p className="text-sm text-[#6B7280] max-w-md mx-auto font-sans">
+                <h3 className="text-xl font-bold text-[#1F2937] dark:text-[#F8FAFC] font-display">Request Submitted!</h3>
+                <p className="text-sm text-[#6B7280] dark:text-slate-400 max-w-md mx-auto font-sans">
                     Thank you for your interest. Our team will review your request and contact you within 24-48 hours with a detailed proposal.
                 </p>
                 <button
@@ -96,7 +96,7 @@ function FormInner({ services }: { services: Service[] }) {
         <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Full Name *
                     </label>
                     <input
@@ -106,11 +106,11 @@ function FormInner({ services }: { services: Service[] }) {
                         onChange={handleChange}
                         placeholder="Your full name"
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Company Name
                     </label>
                     <input
@@ -119,14 +119,14 @@ function FormInner({ services }: { services: Service[] }) {
                         value={form.companyName}
                         onChange={handleChange}
                         placeholder="Your organization (optional)"
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Email Address *
                     </label>
                     <input
@@ -136,11 +136,11 @@ function FormInner({ services }: { services: Service[] }) {
                         onChange={handleChange}
                         placeholder="your@email.com"
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Phone Number *
                     </label>
                     <input
@@ -150,14 +150,14 @@ function FormInner({ services }: { services: Service[] }) {
                         onChange={handleChange}
                         placeholder="+250 7XX XXX XXX"
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Service Required *
                     </label>
                     <select
@@ -165,7 +165,7 @@ function FormInner({ services }: { services: Service[] }) {
                         value={form.serviceId}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     >
                         <option value="">Select a service</option>
                         {activeServices.map((s) => (
@@ -176,7 +176,7 @@ function FormInner({ services }: { services: Service[] }) {
                     </select>
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Estimated Budget (RWF)
                     </label>
                     <input
@@ -185,13 +185,13 @@ function FormInner({ services }: { services: Service[] }) {
                         value={form.budget}
                         onChange={handleChange}
                         placeholder="e.g. 500,000 - 1,000,000"
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
             </div>
 
             <div>
-                <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                     Preferred Start Date
                 </label>
                 <input
@@ -199,12 +199,12 @@ function FormInner({ services }: { services: Service[] }) {
                     name="preferredDate"
                     value={form.preferredDate}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                    className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                 />
             </div>
 
             <div>
-                <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                     Project Description *
                 </label>
                 <textarea
@@ -214,7 +214,7 @@ function FormInner({ services }: { services: Service[] }) {
                     placeholder="Describe your project requirements, goals, timeline, and any specific technical needs..."
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all resize-none font-sans"
+                    className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all resize-none font-sans"
                 />
             </div>
 
@@ -241,7 +241,7 @@ function FormInner({ services }: { services: Service[] }) {
 
 export default function RequestServiceFormWrapper({ services }: { services: Service[] }) {
     return (
-        <Suspense fallback={<div className="text-center py-12 text-[#6B7280] font-sans">Loading form...</div>}>
+        <Suspense fallback={<div className="text-center py-12 text-[#6B7280] dark:text-slate-400 font-sans">Loading form...</div>}>
             <FormInner services={services} />
         </Suspense>
     );

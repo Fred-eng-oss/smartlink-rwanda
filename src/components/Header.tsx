@@ -26,8 +26,8 @@ export default function Header() {
     { name: "About Us", href: "/about" },
     { name: "Services", href: "/services" },
     { name: "Programs", href: "/programs" },
+    { name: "E-Learning", href: "/e-learning/login" },
     { name: "News", href: "/news" },
-    { name: "Control Measures", href: "/control-measures" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -42,7 +42,7 @@ export default function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         showSolid
-          ? "bg-white/80 dark:bg-[#132D52]/80 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.04)] border-b border-[#E5E7EB]/60 dark:border-slate-700/60 py-3"
+          ? "bg-white/80 dark:bg-[#071A35]/80 backdrop-blur-xl shadow-[0_1px_3px_rgba(0,0,0,0.06),0_8px_24px_rgba(0,0,0,0.04)] border-b border-[#E2E8F0]/60 dark:border-slate-700/60 py-3"
           : "bg-transparent py-5"
       }`}
     >
@@ -63,14 +63,14 @@ export default function Header() {
               <span className="font-display font-extrabold text-xl tracking-tight bg-gradient-to-r from-[#0F62FE] to-[#00A86B] bg-clip-text text-transparent">
                 SmartLink
               </span>
-              <span className="text-[10px] block font-semibold text-[#6B7280] dark:text-slate-400 tracking-[0.2em] -mt-0.5 uppercase font-sans">
+              <span className="text-[10px] block font-semibold text-[#64748B] dark:text-slate-400 tracking-[0.2em] -mt-0.5 uppercase font-sans">
                 Rwanda
               </span>
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden xl:flex items-center gap-1">
             {navLinks.map((link) => {
               const isActive =
                 pathname === link.href ||
@@ -79,10 +79,10 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-4 py-2 text-sm font-semibold font-sans tracking-wide rounded-xl transition-all duration-300 ${
+                  className={`relative px-3 py-2 text-[13px] font-semibold font-sans tracking-wide rounded-xl transition-all duration-300 ${
                     isActive
                       ? "text-[#0F62FE]"
-                      : "text-[#1F2937] dark:text-[#F8FAFC] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] hover:bg-[#0F62FE]/5"
+                      : "text-[#0F172A] dark:text-[#F1F5F9] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] hover:bg-[#0F62FE]/5"
                   }`}
                 >
                   {link.name}
@@ -99,11 +99,11 @@ export default function Header() {
           </nav>
 
           {/* Action Buttons */}
-          <div className="hidden lg:flex items-center gap-3">
+          <div className="hidden xl:flex items-center gap-3">
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-2xl border border-[#E5E7EB] dark:border-slate-700 text-[#6B7280] dark:text-slate-400 bg-white dark:bg-[#132D52] hover:bg-[#F8FAFC] dark:hover:bg-[#0B1F3A] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] hover:border-[#0F62FE]/30 transition-all duration-300 shadow-sm"
+              className="p-2.5 rounded-2xl border border-[#E2E8F0] dark:border-slate-700 text-[#64748B] dark:text-slate-400 bg-white dark:bg-[#0D2847] hover:bg-[#F8FAFC] dark:hover:bg-[#071A35] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] hover:border-[#0F62FE]/30 transition-all duration-300 shadow-sm"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
@@ -113,29 +113,28 @@ export default function Header() {
               )}
             </button>
 
-            {/* Student Portal */}
+            {/* Registration */}
             <Link
-              href="/e-learning/login"
-              className="flex items-center gap-2 text-xs font-bold font-sans uppercase tracking-wider text-[#1F2937] dark:text-[#F8FAFC] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] border-2 border-[#E5E7EB] dark:border-slate-700 hover:border-[#0F62FE]/40 px-5 py-2.5 rounded-2xl transition-all duration-300 hover:shadow-md"
+              href="/register"
+              className="flex items-center gap-2 text-xs font-bold font-sans uppercase tracking-wider text-[#0F172A] dark:text-[#F1F5F9] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] border-2 border-[#E2E8F0] dark:border-slate-700 hover:border-[#0F62FE]/40 px-4 py-2.5 rounded-2xl transition-all duration-300 hover:shadow-md"
             >
-              <LogIn className="w-3.5 h-3.5" />
-              Student Portal
+              Registration
             </Link>
 
-            {/* Get Started CTA */}
+            {/* Service Request CTA */}
             <Link
               href="/request-service"
-              className="bg-gradient-to-r from-[#0F62FE] to-[#0A55D4] hover:from-[#0A55D4] hover:to-[#0844B0] text-white text-xs font-bold font-sans uppercase tracking-wider px-6 py-2.5 rounded-full shadow-lg shadow-[#0F62FE]/25 hover:shadow-[#0F62FE]/40 hover:-translate-y-0.5 transition-all duration-300"
+              className="bg-gradient-to-r from-[#0F62FE] to-[#0A55D4] hover:from-[#0A55D4] hover:to-[#0844B0] text-white text-xs font-bold font-sans uppercase tracking-wider px-5 py-2.5 rounded-full shadow-lg shadow-[#0F62FE]/25 hover:shadow-[#0F62FE]/40 hover:-translate-y-0.5 transition-all duration-300"
             >
-              Get Started
+              Service Request
             </Link>
           </div>
 
           {/* Mobile Buttons */}
-          <div className="flex lg:hidden items-center gap-2">
+          <div className="flex xl:hidden items-center gap-2">
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-2xl text-[#6B7280] dark:text-slate-400 bg-white dark:bg-[#132D52] border border-[#E5E7EB] dark:border-slate-700 hover:bg-[#F8FAFC] dark:hover:bg-[#0B1F3A] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] transition-all duration-300 shadow-sm"
+              className="p-2.5 rounded-2xl text-[#64748B] dark:text-slate-400 bg-white dark:bg-[#0D2847] border border-[#E2E8F0] dark:border-slate-700 hover:bg-[#F8FAFC] dark:hover:bg-[#071A35] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] transition-all duration-300 shadow-sm"
               aria-label="Toggle theme"
             >
               {theme === "light" ? (
@@ -147,7 +146,7 @@ export default function Header() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-2xl text-[#1F2937] dark:text-[#F8FAFC] bg-white dark:bg-[#132D52] border border-[#E5E7EB] dark:border-slate-700 hover:bg-[#F8FAFC] dark:hover:bg-[#0B1F3A] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] transition-all duration-300 shadow-sm"
+              className="p-2.5 rounded-2xl text-[#0F172A] dark:text-[#F1F5F9] bg-white dark:bg-[#0D2847] border border-[#E2E8F0] dark:border-slate-700 hover:bg-[#F8FAFC] dark:hover:bg-[#071A35] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] transition-all duration-300 shadow-sm"
               aria-label="Toggle mobile menu"
             >
               {mobileMenuOpen ? (
@@ -168,7 +167,7 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto", y: 0 }}
             exit={{ opacity: 0, height: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="lg:hidden bg-white/95 dark:bg-[#132D52]/95 backdrop-blur-xl border-b border-[#E5E7EB] dark:border-slate-700 overflow-hidden shadow-2xl"
+            className="xl:hidden bg-white/95 dark:bg-[#071A35]/95 backdrop-blur-xl border-b border-[#E2E8F0] dark:border-slate-700 overflow-hidden shadow-2xl"
           >
             <div className="px-4 pt-4 pb-6 space-y-1">
               {navLinks.map((link, i) => {
@@ -188,7 +187,7 @@ export default function Header() {
                       className={`block px-4 py-3 rounded-2xl text-base font-semibold font-sans transition-all duration-300 ${
                         isActive
                           ? "bg-[#0F62FE]/10 text-[#0F62FE] border-l-4 border-[#0F62FE]"
-                          : "text-[#1F2937] dark:text-[#F8FAFC] hover:bg-[#F8FAFC] dark:hover:bg-[#0B1F3A] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF]"
+                          : "text-[#0F172A] dark:text-[#F1F5F9] hover:bg-[#F8FAFC] dark:hover:bg-[#071A35] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF]"
                       }`}
                     >
                       {link.name}
@@ -196,21 +195,20 @@ export default function Header() {
                   </motion.div>
                 );
               })}
-              <div className="pt-4 border-t border-[#E5E7EB] dark:border-slate-700 mt-4 space-y-3">
+              <div className="pt-4 border-t border-[#E2E8F0] dark:border-slate-700 mt-4 space-y-3">
                 <Link
-                  href="/e-learning/login"
+                  href="/register"
                   onClick={handleLinkClick}
-                  className="flex items-center justify-center gap-2 w-full text-center text-sm font-bold font-sans text-[#1F2937] dark:text-[#F8FAFC] py-3 rounded-2xl border-2 border-[#E5E7EB] dark:border-slate-700 hover:border-[#0F62FE]/40 hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] transition-all duration-300"
+                  className="flex items-center justify-center gap-2 w-full text-center text-sm font-bold font-sans text-[#0F172A] dark:text-[#F1F5F9] py-3 rounded-2xl border-2 border-[#E2E8F0] dark:border-slate-700 hover:border-[#0F62FE]/40 hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] transition-all duration-300"
                 >
-                  <LogIn className="w-4 h-4" />
-                  Student Portal
+                  Registration
                 </Link>
                 <Link
                   href="/request-service"
                   onClick={handleLinkClick}
                   className="flex items-center justify-center gap-2 w-full text-center text-sm font-bold font-sans text-white bg-gradient-to-r from-[#0F62FE] to-[#0A55D4] py-3 rounded-2xl shadow-lg shadow-[#0F62FE]/25 transition-all duration-300"
                 >
-                  Get Started
+                  Service Request
                 </Link>
               </div>
             </div>

@@ -34,7 +34,7 @@ export default function ContactPage() {
     return (
         <div className="space-y-24 py-12 pb-20">
             {/* HERO */}
-            <section className="bg-gradient-to-br from-[#0F62FE] via-[#0B4FC4] to-[#00A86B] text-white py-16 relative overflow-hidden select-none">
+            <section className="bg-gradient-to-br from-[#071A35] via-[#0D2847] to-[#0F62FE] text-white py-16 relative overflow-hidden select-none">
                 <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.1),transparent)]" />
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
                     <h1 className="text-4xl font-extrabold font-display">Contact Us</h1>
@@ -50,11 +50,11 @@ export default function ContactPage() {
                     {/* Contact Info */}
                     <div className="lg:col-span-4 space-y-8">
                         <div className="space-y-4">
-                            <h2 className="text-2xl font-extrabold text-[#1F2937] font-display">
+                            <h2 className="text-2xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
                                 Get In Touch
                             </h2>
-                            <div className="w-12 h-1 bg-[#0F62FE] rounded-full" />
-                            <p className="text-sm text-[#6B7280] leading-relaxed font-sans">
+                            <div className="w-12 h-1 bg-gradient-to-r from-[#0F62FE] to-[#00A86B] rounded-full" />
+                            <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed font-sans">
                                 Reach out to us for any inquiries about our services, training programs, or partnership opportunities.
                             </p>
                         </div>
@@ -63,17 +63,17 @@ export default function ContactPage() {
                             {infoCards.map((card) => (
                                 <div
                                     key={card.label}
-                                    className="bg-white rounded-2xl border border-[#E5E7EB] p-6 flex gap-4 hover:shadow-md transition-shadow"
+                                    className="bg-white dark:bg-[#0D2847] rounded-2xl border border-[#E2E8F0] dark:border-slate-700/50 p-6 flex gap-4 hover:shadow-md transition-shadow"
                                 >
                                     <div className="p-3 bg-[#0F62FE]/10 rounded-xl text-[#0F62FE] shrink-0 h-fit">
                                         <card.icon className="w-5 h-5" />
                                     </div>
                                     <div>
-                                        <h3 className="font-bold text-sm text-[#1F2937] mb-1 font-display">
+                                        <h3 className="font-bold text-sm text-[#0F172A] dark:text-[#F1F5F9] mb-1 font-display">
                                             {card.label}
                                         </h3>
                                         {card.lines.map((line, i) => (
-                                            <p key={i} className="text-xs text-[#6B7280] font-sans">
+                                            <p key={i} className="text-xs text-[#64748B] dark:text-slate-400 font-sans">
                                                 {line}
                                             </p>
                                         ))}
@@ -95,11 +95,11 @@ export default function ContactPage() {
 
                     {/* Contact Form */}
                     <div className="lg:col-span-8">
-                        <div className="bg-white rounded-2xl border border-[#E5E7EB] shadow-sm p-8 sm:p-10">
-                            <h2 className="text-xl font-extrabold text-[#1F2937] font-display mb-2">
+                        <div className="bg-white dark:bg-[#0D2847] rounded-2xl border border-[#E2E8F0] dark:border-slate-700/50 shadow-sm p-8 sm:p-10">
+                            <h2 className="text-xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display mb-2">
                                 Send Us a Message
                             </h2>
-                            <p className="text-xs text-[#6B7280] mb-8 font-sans">
+                            <p className="text-xs text-[#64748B] dark:text-slate-400 mb-8 font-sans">
                                 Fill out the form below and our team will respond within 24 hours.
                             </p>
                             <ContactForm />

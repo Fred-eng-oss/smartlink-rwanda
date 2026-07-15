@@ -164,10 +164,10 @@ export default async function AdminPage() {
             <BarChart3 className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-[#1F2937] font-display tracking-tight">
+            <h1 className="text-2xl font-bold text-[#1F2937] dark:text-[#F8FAFC] font-display tracking-tight">
               Welcome back, {userName}
             </h1>
-            <p className="text-sm text-[#6B7280] font-sans mt-0.5">
+            <p className="text-sm text-[#6B7280] dark:text-slate-400 font-sans mt-0.5">
               Manage your SmartLink Rwanda platform from this central dashboard.
             </p>
           </div>
@@ -179,7 +179,7 @@ export default async function AdminPage() {
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="bg-white rounded-2xl p-5 border border-slate-200/60 shadow-sm hover:shadow-md transition-shadow duration-300"
+            className="bg-white dark:bg-[#132D52] rounded-2xl p-5 border border-slate-200/60 dark:border-slate-700/60 shadow-sm hover:shadow-md transition-shadow duration-300"
           >
             <div className="flex items-center justify-between mb-4">
               <div
@@ -188,10 +188,10 @@ export default async function AdminPage() {
                 <stat.icon className={`w-5 h-5 ${stat.color}`} />
               </div>
             </div>
-            <p className="text-3xl font-bold text-[#1F2937] font-display tracking-tight">
+            <p className="text-3xl font-bold text-[#1F2937] dark:text-[#F8FAFC] font-display tracking-tight">
               {stat.value.toLocaleString()}
             </p>
-            <p className="text-xs font-semibold text-[#6B7280] uppercase tracking-wider mt-1.5 font-sans">
+            <p className="text-xs font-semibold text-[#6B7280] dark:text-slate-400 uppercase tracking-wider mt-1.5 font-sans">
               {stat.label}
             </p>
           </div>
@@ -200,7 +200,7 @@ export default async function AdminPage() {
 
       {/* Quick Actions */}
       <div className="space-y-4">
-        <h2 className="text-lg font-bold text-[#1F2937] font-display tracking-tight">
+        <h2 className="text-lg font-bold text-[#1F2937] dark:text-[#F8FAFC] font-display tracking-tight">
           Quick Actions
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
@@ -208,17 +208,17 @@ export default async function AdminPage() {
             <Link
               key={action.label}
               href={action.href}
-              className={`group bg-white border border-slate-200/60 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${action.hoverBorder}`}
+              className={`group bg-white dark:bg-[#132D52] border border-slate-200/60 dark:border-slate-700/60 rounded-2xl p-5 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 ${action.hoverBorder}`}
             >
               <div
                 className={`p-2.5 rounded-xl w-fit mb-4 ${action.color}`}
               >
                 <action.icon className="w-5 h-5" />
               </div>
-              <h3 className="font-bold text-sm text-[#1F2937] mb-1 font-display">
+              <h3 className="font-bold text-sm text-[#1F2937] dark:text-[#F8FAFC] mb-1 font-display">
                 {action.label}
               </h3>
-              <p className="text-xs text-[#6B7280] leading-relaxed font-sans">
+              <p className="text-xs text-[#6B7280] dark:text-slate-400 leading-relaxed font-sans">
                 {action.description}
               </p>
               <div className="flex items-center gap-1.5 mt-3 text-xs font-semibold text-[#0F62FE] opacity-0 group-hover:opacity-100 transition-opacity duration-300 font-sans">

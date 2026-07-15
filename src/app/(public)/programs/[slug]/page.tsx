@@ -58,7 +58,7 @@ export default async function ProgramDetailPage({ params }: Props) {
             </section>
 
             {/* 2. PROGRAM DETAILS */}
-            <section className="bg-white py-20 sm:py-24">
+            <section className="bg-white dark:bg-[#132D52] py-20 sm:py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                         {/* Main Content */}
@@ -69,7 +69,7 @@ export default async function ProgramDetailPage({ params }: Props) {
                                     <div className="p-2.5 bg-accent-gold/10 rounded-xl">
                                         <Award className="w-5 h-5 text-accent-gold" />
                                     </div>
-                                    <h2 className="text-xl font-extrabold text-dark-text font-display">
+                                    <h2 className="text-xl font-extrabold text-dark-text dark:text-[#F8FAFC] font-display">
                                         Program Requirements
                                     </h2>
                                 </div>
@@ -156,7 +156,7 @@ export default async function ProgramDetailPage({ params }: Props) {
             </section>
 
             {/* 3. CTA */}
-            <section className="bg-surface py-20 sm:py-24">
+            <section className="bg-surface dark:bg-[#0B1F3A] py-20 sm:py-24">
                 <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="relative bg-gradient-to-br from-navy to-primary-dark rounded-3xl p-10 sm:p-14 text-center overflow-hidden">
                         <div className="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -mr-20 -mt-20 blur-2xl" />

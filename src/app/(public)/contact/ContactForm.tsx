@@ -51,8 +51,8 @@ export default function ContactForm() {
         return (
             <div className="text-center py-12 space-y-4">
                 <CheckCircle className="w-16 h-16 text-[#00A86B] mx-auto" />
-                <h3 className="text-xl font-bold text-[#1F2937] font-display">Thank You!</h3>
-                <p className="text-sm text-[#6B7280] font-sans">
+                <h3 className="text-xl font-bold text-[#1F2937] dark:text-[#F8FAFC] font-display">Thank You!</h3>
+                <p className="text-sm text-[#6B7280] dark:text-slate-400 font-sans">
                     Your message has been received. Our team will get back to you within 24 hours.
                 </p>
                 <button
@@ -69,7 +69,7 @@ export default function ContactForm() {
         <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Full Name *
                     </label>
                     <input
@@ -79,11 +79,11 @@ export default function ContactForm() {
                         onChange={handleChange}
                         placeholder="Your full name"
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Email Address *
                     </label>
                     <input
@@ -93,14 +93,14 @@ export default function ContactForm() {
                         onChange={handleChange}
                         placeholder="your@email.com"
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Phone Number
                     </label>
                     <input
@@ -109,11 +109,11 @@ export default function ContactForm() {
                         value={form.phone}
                         onChange={handleChange}
                         placeholder="+250 7XX XXX XXX"
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Subject *
                     </label>
                     <select
@@ -121,7 +121,7 @@ export default function ContactForm() {
                         value={form.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     >
                         <option value="">Select a subject</option>
                         <option value="General Inquiry">General Inquiry</option>
@@ -135,7 +135,7 @@ export default function ContactForm() {
             </div>
 
             <div>
-                <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                     Message *
                 </label>
                 <textarea
@@ -145,7 +145,7 @@ export default function ContactForm() {
                     placeholder="Describe your inquiry or project details..."
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all resize-none font-sans"
+                    className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all resize-none font-sans"
                 />
             </div>
 

@@ -71,8 +71,7 @@ function AuthErrorContent() {
 
     return (
         <div
-            className="min-h-screen flex items-center justify-center px-4 select-none relative overflow-hidden"
-            style={{ backgroundColor: "#0B1F3A" }}
+            className="min-h-screen flex items-center justify-center px-4 select-none relative overflow-hidden bg-[#0B1F3A]"
         >
             <div className="absolute inset-0">
                 <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-20" style={{ backgroundColor: "#EF4444" }} />
@@ -82,19 +81,19 @@ function AuthErrorContent() {
             <div className="w-full max-w-lg relative z-10">
                 <div className="text-center mb-8">
                     <Link href="/" className="inline-block">
-                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto shadow-2xl" style={{ backgroundColor: "#0F62FE" }}>
+                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto shadow-2xl bg-[#0F62FE]">
                             <Shield className="w-8 h-8 text-white" />
                         </div>
                     </Link>
                 </div>
 
-                <div className="bg-white rounded-2xl p-8 shadow-2xl text-center space-y-6">
+                <div className="bg-white dark:bg-[#132D52] rounded-2xl p-8 shadow-2xl text-center space-y-6">
                     <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl" style={{ backgroundColor: errorInfo.iconBg }}>
                         <AlertTriangle className="w-8 h-8" style={{ color: errorInfo.iconColor }} />
                     </div>
 
                     <div className="space-y-2">
-                        <h1 className="text-2xl font-extrabold font-display" style={{ color: "#1F2937" }}>
+                        <h1 className="text-2xl font-extrabold font-display text-[#1F2937] dark:text-[#F8FAFC]">
                             {errorInfo.title}
                         </h1>
                         <p className="text-sm leading-relaxed max-w-sm mx-auto font-sans" style={{ color: "#6B7280" }}>

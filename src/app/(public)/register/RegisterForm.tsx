@@ -73,8 +73,8 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
         return (
             <div className="text-center py-16 space-y-4">
                 <CheckCircle className="w-16 h-16 text-[#00A86B] mx-auto" />
-                <h3 className="text-xl font-bold text-[#1F2937] font-display">Registration Submitted!</h3>
-                <p className="text-sm text-[#6B7280] max-w-md mx-auto font-sans">
+                <h3 className="text-xl font-bold text-[#1F2937] dark:text-[#F8FAFC] font-display">Registration Submitted!</h3>
+                <p className="text-sm text-[#6B7280] dark:text-slate-400 max-w-md mx-auto font-sans">
                     Thank you for applying. Our admissions team will review your application and contact you within 48 hours with next steps.
                 </p>
                 <button
@@ -91,7 +91,7 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
         <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Full Name *
                     </label>
                     <input
@@ -101,11 +101,11 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         onChange={handleChange}
                         placeholder="Student's full name"
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Gender *
                     </label>
                     <select
@@ -113,7 +113,7 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         value={form.gender}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     >
                         <option value="">Select gender</option>
                         <option value="Male">Male</option>
@@ -124,7 +124,7 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Date of Birth *
                     </label>
                     <input
@@ -133,11 +133,11 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         value={form.dob}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Email Address *
                     </label>
                     <input
@@ -147,14 +147,14 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         onChange={handleChange}
                         placeholder="student@email.com"
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Phone Number *
                     </label>
                     <input
@@ -164,11 +164,11 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         onChange={handleChange}
                         placeholder="+250 7XX XXX XXX"
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     />
                 </div>
                 <div>
-                    <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                    <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                         Program *
                     </label>
                     <select
@@ -176,7 +176,7 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                         value={form.programId}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                        className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                     >
                         <option value="">Select a program</option>
                         {activePrograms.map((p) => (
@@ -189,7 +189,7 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
             </div>
 
             <div>
-                <label className="block text-xs font-bold text-[#1F2937] mb-1.5 uppercase tracking-wider font-sans">
+                <label className="block text-xs font-bold text-[#1F2937] dark:text-[#F8FAFC] mb-1.5 uppercase tracking-wider font-sans">
                     Home Address *
                 </label>
                 <input
@@ -199,11 +199,11 @@ export default function RegisterForm({ programs }: { programs: Program[] }) {
                     onChange={handleChange}
                     placeholder="Your residential address"
                     required
-                    className="w-full px-4 py-3 bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl text-sm text-[#1F2937] placeholder-[#6B7280] focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
+                    className="w-full px-4 py-3 bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl text-sm text-[#1F2937] dark:text-[#F8FAFC] placeholder-[#6B7280] dark:placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-[#0F62FE] focus:border-transparent transition-all font-sans"
                 />
             </div>
 
-            <div className="bg-[#F8FAFC] border border-[#E5E7EB] rounded-2xl p-4 text-xs text-[#6B7280] leading-relaxed font-sans">
+            <div className="bg-[#F8FAFC] dark:bg-[#0B1F3A] border border-[#E5E7EB] dark:border-slate-700 rounded-2xl p-4 text-xs text-[#6B7280] dark:text-slate-400 leading-relaxed font-sans">
                 By submitting this form, you confirm that the information provided is accurate. Our admissions team will contact you via email or phone within 48 hours with enrollment details.
             </div>
 

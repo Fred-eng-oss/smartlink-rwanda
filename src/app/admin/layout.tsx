@@ -52,7 +52,7 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
 
   if (status === "unauthenticated") {
     return (
-      <div className="flex h-screen items-center justify-center bg-[#F8FAFC]">
+      <div className="flex h-screen items-center justify-center bg-[#F8FAFC] dark:bg-[#0B1F3A]">
         <div className="h-8 w-8 animate-spin rounded-full border-2 border-slate-300 border-t-[#0F62FE]" />
       </div>
     );
@@ -60,10 +60,10 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
 
   if (status === "loading") {
     return (
-      <div className="flex h-screen items-center justify-center bg-[#F8FAFC]">
+      <div className="flex h-screen items-center justify-center bg-[#F8FAFC] dark:bg-[#0B1F3A]">
         <div className="flex flex-col items-center gap-4">
           <div className="h-10 w-10 animate-spin rounded-full border-[3px] border-slate-200 border-t-[#0F62FE]" />
-          <p className="text-sm font-medium text-[#6B7280] font-sans">
+          <p className="text-sm font-medium text-[#6B7280] dark:text-slate-400 font-sans">
             Loading...
           </p>
         </div>
@@ -144,7 +144,7 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
   );
 
   return (
-    <div className="flex h-screen bg-[#F8FAFC] overflow-hidden">
+    <div className="flex h-screen bg-[#F8FAFC] dark:bg-[#0B1F3A] overflow-hidden">
       {/* Desktop Sidebar */}
       <aside className="hidden lg:flex lg:flex-col lg:w-[260px] shrink-0 bg-[#0B1F3A]">
         {sidebarContent}
@@ -180,10 +180,10 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
       {/* Main Content Area */}
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         {/* Sticky Top Header */}
-        <header className="sticky top-0 z-30 flex items-center h-16 px-4 sm:px-6 lg:px-8 bg-white border-b border-slate-200/80 shrink-0">
+        <header className="sticky top-0 z-30 flex items-center h-16 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#132D52] border-b border-slate-200/80 dark:border-slate-700/80 shrink-0">
           <button
             onClick={() => setMobileOpen(true)}
-            className="p-2 -ml-2 rounded-lg text-[#6B7280] hover:text-[#1F2937] hover:bg-slate-100 transition-colors lg:hidden"
+            className="p-2 -ml-2 rounded-lg text-[#6B7280] dark:text-slate-400 hover:text-[#1F2937] dark:hover:text-[#F8FAFC] hover:bg-slate-100 dark:hover:bg-white/10 transition-colors lg:hidden"
           >
             <Menu className="w-5 h-5" />
           </button>
@@ -192,10 +192,10 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
 
           <div className="flex items-center gap-3">
             <div className="hidden sm:flex flex-col items-end">
-              <span className="text-sm font-semibold text-[#1F2937] leading-none font-sans">
+              <span className="text-sm font-semibold text-[#1F2937] dark:text-[#F8FAFC] leading-none font-sans">
                 {session?.user?.name || "Admin"}
               </span>
-              <span className="text-xs text-[#6B7280] mt-1 leading-none font-sans">
+              <span className="text-xs text-[#6B7280] dark:text-slate-400 mt-1 leading-none font-sans">
                 {session?.user?.email || "admin@smartlink.rw"}
               </span>
             </div>
@@ -209,7 +209,7 @@ function AuthenticatedShell({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-y-auto bg-[#F8FAFC]">
+        <main className="flex-1 overflow-y-auto bg-[#F8FAFC] dark:bg-[#0B1F3A]">
           <div className="p-4 sm:p-6 lg:p-8">{children}</div>
         </main>
       </div>

@@ -19,6 +19,10 @@ import {
   Megaphone,
   Monitor,
   Users,
+  Award,
+  Star,
+  BookOpen,
+  ChevronRight,
 } from "lucide-react";
 import {
   getSettings,
@@ -27,9 +31,12 @@ import {
   getNews,
   getTestimonials,
 } from "@/lib/data";
-import type { Service, Program, NewsArticle } from "@//lib/types";
+import type { Service, Program, NewsArticle } from "@/lib/types";
+import HeroSlideshow from "@/components/HeroSlideshow";
+import HeroStats from "@/components/HeroStats";
 import StatsCounter from "@/components/StatsCounter";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
+import PartnersMarquee from "@/components/PartnersMarquee";
 
 const whyChooseUs = [
   {
@@ -74,74 +81,35 @@ export default async function HomePage() {
 
   const featuredServices = allServices.slice(0, 4);
   const featuredPrograms = allPrograms.slice(0, 4);
-  const recentNews = newsList.slice(0, 2);
+  const recentNews = newsList.slice(0, 3);
 
   return (
     <div className="space-y-0">
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 1 — HERO
+          SECTION 1 — HERO SLIDESHOW
       ═══════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-emerald-500 text-white select-none">
-        {/* Decorative floating shapes */}
-        <div className="absolute top-10 left-[10%] w-72 h-72 bg-white/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-10 right-[15%] w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-400/5 rounded-full blur-3xl pointer-events-none" />
-        {/* Geometric accents */}
-        <div className="absolute top-20 right-[20%] w-16 h-16 border border-white/10 rounded-2xl rotate-45" />
-        <div className="absolute bottom-32 left-[12%] w-10 h-10 border border-white/10 rounded-xl rotate-12" />
-        <div className="absolute top-1/3 right-[8%] w-6 h-6 bg-white/10 rounded-full" />
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 relative z-10">
-          <div className="max-w-3xl text-center mx-auto space-y-8">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1] font-display">
-              Bridging the{" "}
-              <span className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-2xl">
-                Digital Divide
-              </span>
-            </h1>
-            <p className="text-lg sm:text-xl text-white/85 max-w-2xl mx-auto leading-relaxed font-medium">
-              Professional ICT consulting, custom software engineering, reliable
-              web hosting, and accredited training certifications — empowering
-              Rwanda&apos;s digital economy.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
-              <Link
-                href="/services"
-                className="bg-white text-blue-700 font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-xl shadow-black/10 hover:shadow-2xl hover:-translate-y-0.5 transition-all text-center"
-              >
-                Explore Services
-              </Link>
-              <Link
-                href="/contact"
-                className="bg-transparent border-2 border-white/40 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full hover:bg-white/10 transition-all text-center"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSlideshow />
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 2 — COMPANY INTRO
+          SECTION 2 — ABOUT SMARTLINK RWANDA
       ═══════════════════════════════════════════════════════════ */}
-      <section className="bg-white py-20 sm:py-28">
+      <section className="bg-white dark:bg-[#0D2847] py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             <div className="lg:col-span-6 space-y-6">
-              <span className="inline-block text-xs font-bold bg-blue-50 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
+              <span className="inline-block text-xs font-bold bg-[#0F62FE]/10 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
                 Who We Are
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] leading-tight font-display">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] leading-tight font-display">
                 Empowering individuals and businesses with innovative technology.
               </h2>
               <div className="w-16 h-1.5 bg-gradient-to-r from-[#0F62FE] to-[#00A86B] rounded-full" />
             </div>
-            <div className="lg:col-span-6 space-y-6 text-[#6B7280] text-sm leading-relaxed">
+            <div className="lg:col-span-6 space-y-6 text-[#64748B] dark:text-slate-400 text-sm leading-relaxed">
               <p className="text-base font-medium">
                 {settings.about_overview}
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 text-sm font-semibold text-[#1F2937]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 text-sm font-semibold text-[#0F172A] dark:text-[#F1F5F9]">
                 <div className="flex items-center gap-2.5">
                   <CheckCircle className="w-5 h-5 text-[#00A86B] shrink-0" />
                   Empowering Regional Tech Talents
@@ -173,61 +141,22 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 3 — WHY CHOOSE US
+          SECTION 3 — FEATURED SERVICES
       ═══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#F8FAFC] py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="inline-block text-xs font-bold bg-blue-50 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
-              Our Value Proposition
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] font-display">
-              Why Corporate Clients Choose Us
-            </h2>
-            <p className="text-sm text-[#6B7280]">
-              We deliver high-standards service, robust solutions, and practical
-              engineering results for every engagement.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyChooseUs.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl p-6 shadow-sm shadow-slate-100 card-hover hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="p-3 bg-blue-50 rounded-xl w-fit text-[#0F62FE] mb-5">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-bold text-lg text-[#1F2937] mb-2 font-display">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-[#6B7280] leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 4 — FEATURED SERVICES
-      ═══════════════════════════════════════════════════════════ */}
-      <section className="bg-white py-20 sm:py-28">
+      <section className="bg-[#F8FAFC] dark:bg-[#071A35] py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
             <div className="space-y-4">
-              <span className="inline-block text-xs font-bold bg-blue-50 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
+              <span className="inline-block text-xs font-bold bg-[#0F62FE]/10 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
                 What We Do
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] font-display">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
                 Our Services
               </h2>
             </div>
             <Link
               href="/services"
-              className="group inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-[#0F62FE] font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-full transition-all"
+              className="group inline-flex items-center gap-2 bg-[#0F62FE]/10 hover:bg-[#0F62FE]/20 text-[#0F62FE] font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-full transition-all"
             >
               All Services{" "}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -240,18 +169,18 @@ export default async function HomePage() {
               return (
                 <div
                   key={service.slug}
-                  className="bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden card-hover hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col p-6"
+                  className="bg-white dark:bg-[#0D2847] border border-[#E2E8F0] dark:border-slate-700/50 rounded-2xl overflow-hidden card-hover hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col p-6 group"
                 >
-                  <div className="p-3 bg-blue-50 rounded-xl w-fit text-[#0F62FE] mb-5">
+                  <div className="p-3 bg-[#0F62FE]/10 rounded-xl w-fit text-[#0F62FE] mb-5 group-hover:bg-[#0F62FE] group-hover:text-white transition-all duration-300">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#1F2937] font-display mb-2">
+                  <h3 className="text-lg font-bold text-[#0F172A] dark:text-[#F1F5F9] font-display mb-2">
                     {service.name}
                   </h3>
-                  <p className="text-sm text-[#6B7280] leading-relaxed line-clamp-3 mb-6">
+                  <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed line-clamp-3 mb-6">
                     {service.description}
                   </p>
-                  <div className="mt-auto pt-4 border-t border-[#E5E7EB]">
+                  <div className="mt-auto pt-4 border-t border-[#E2E8F0] dark:border-slate-700/50">
                     <Link
                       href={`/services/${service.slug}`}
                       className="font-bold text-xs uppercase tracking-wider text-[#0F62FE] hover:text-[#00A86B] flex items-center gap-1.5 transition-colors"
@@ -267,31 +196,22 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 5 — STATS
+          SECTION 4 — FEATURED PROGRAMS
       ═══════════════════════════════════════════════════════════ */}
-      <section className="bg-gradient-to-r from-blue-600 to-emerald-500 py-20 sm:py-28 select-none">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <StatsCounter />
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 6 — FEATURED PROGRAMS
-      ═══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#F8FAFC] py-20 sm:py-28">
+      <section className="bg-white dark:bg-[#0D2847] py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
             <div className="space-y-4">
-              <span className="inline-block text-xs font-bold bg-blue-50 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
+              <span className="inline-block text-xs font-bold bg-[#F59E0B]/10 text-[#F59E0B] rounded-full px-4 py-1.5 uppercase tracking-widest">
                 Training &amp; Certification
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] font-display">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
                 Professional IT Academy Programs
               </h2>
             </div>
             <Link
               href="/programs"
-              className="group inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-[#0F62FE] font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-full transition-all"
+              className="group inline-flex items-center gap-2 bg-[#F59E0B]/10 hover:bg-[#F59E0B]/20 text-[#F59E0B] font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-full transition-all"
             >
               All Programs{" "}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -304,25 +224,25 @@ export default async function HomePage() {
               return (
                 <div
                   key={prog.slug}
-                  className="bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden card-hover hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
+                  className="bg-[#F8FAFC] dark:bg-[#071A35] border border-[#E2E8F0] dark:border-slate-700/50 rounded-2xl overflow-hidden card-hover hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group"
                 >
                   <div className="p-6 space-y-4 flex-1">
                     <div className="flex items-center justify-between">
-                      <div className="p-3 bg-blue-50 rounded-xl text-[#0F62FE]">
+                      <div className="p-3 bg-[#F59E0B]/10 rounded-xl text-[#F59E0B] group-hover:bg-[#F59E0B] group-hover:text-white transition-all duration-300">
                         <PIcon className="w-6 h-6" />
                       </div>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-[#F8FAFC] text-[#6B7280] border border-[#E5E7EB]">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-white dark:bg-[#0D2847] text-[#64748B] dark:text-slate-400 border border-[#E2E8F0] dark:border-slate-700/50">
                         <Clock className="w-3 h-3" />
                         {prog.duration}
                       </span>
                     </div>
-                    <h3 className="text-lg font-bold text-[#1F2937] font-display">
+                    <h3 className="text-lg font-bold text-[#0F172A] dark:text-[#F1F5F9] font-display">
                       {prog.name}
                     </h3>
-                    <p className="text-sm text-[#6B7280] leading-relaxed line-clamp-3">
+                    <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed line-clamp-3">
                       {prog.description}
                     </p>
-                    <ul className="space-y-2 text-xs text-[#6B7280]">
+                    <ul className="space-y-2 text-xs text-[#64748B] dark:text-slate-400">
                       {prog.learningOutcomes.slice(0, 3).map((out: string, i: number) => (
                         <li key={i} className="flex items-center gap-2">
                           <CheckCircle className="w-3.5 h-3.5 text-[#00A86B] shrink-0" />
@@ -334,7 +254,7 @@ export default async function HomePage() {
                   <div className="px-6 pb-6 pt-2">
                     <Link
                       href={`/programs#${prog.slug}`}
-                      className="font-bold text-xs uppercase tracking-wider text-[#0F62FE] hover:text-[#00A86B] flex items-center gap-1.5 transition-colors"
+                      className="font-bold text-xs uppercase tracking-wider text-[#F59E0B] hover:text-[#0F62FE] flex items-center gap-1.5 transition-colors"
                     >
                       View Program <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
@@ -347,19 +267,67 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
+          SECTION 5 — WHY CHOOSE US
+      ═══════════════════════════════════════════════════════════ */}
+      <section className="bg-[#F8FAFC] dark:bg-[#071A35] py-20 sm:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+            <span className="inline-block text-xs font-bold bg-[#00A86B]/10 text-[#00A86B] rounded-full px-4 py-1.5 uppercase tracking-widest">
+              Our Value Proposition
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
+              Why Corporate Clients Choose Us
+            </h2>
+            <p className="text-sm text-[#64748B] dark:text-slate-400">
+              We deliver high-standards service, robust solutions, and practical
+              engineering results for every engagement.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {whyChooseUs.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-white dark:bg-[#0D2847] rounded-2xl p-6 border border-[#E2E8F0] dark:border-slate-700/50 card-hover hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
+              >
+                <div className="p-3 bg-[#0F62FE]/10 rounded-xl w-fit text-[#0F62FE] mb-5 group-hover:bg-[#0F62FE] group-hover:text-white transition-all duration-300">
+                  <item.icon className="w-6 h-6" />
+                </div>
+                <h3 className="font-bold text-lg text-[#0F172A] dark:text-[#F1F5F9] mb-2 font-display">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          SECTION 6 — STATISTICS COUNTER
+      ═══════════════════════════════════════════════════════════ */}
+      <section className="bg-gradient-to-r from-[#071A35] via-[#0F62FE] to-[#00A86B] py-20 sm:py-28 select-none">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <StatsCounter />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
           SECTION 7 — TESTIMONIALS
       ═══════════════════════════════════════════════════════════ */}
-      <section className="bg-white py-20 sm:py-28">
+      <section className="bg-white dark:bg-[#0D2847] py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-4 space-y-6">
-              <span className="inline-block text-xs font-bold bg-blue-50 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
+              <span className="inline-block text-xs font-bold bg-[#0F62FE]/10 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
                 Testimonials
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] leading-tight font-display">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] leading-tight font-display">
                 What Our Clients Say
               </h2>
-              <p className="text-sm text-[#6B7280] leading-relaxed">
+              <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed">
                 SmartLink Rwanda collaborates with leading companies and
                 organizations across Rwanda to facilitate smooth digital
                 growth.
@@ -373,43 +341,44 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 8 — LATEST NEWS
+          SECTION 8 — NEWS & UPDATES PREVIEW
       ═══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#F8FAFC] py-20 sm:py-28">
+      <section className="bg-[#F8FAFC] dark:bg-[#071A35] py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
             <div className="space-y-4">
-              <span className="inline-block text-xs font-bold bg-blue-50 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
+              <span className="inline-block text-xs font-bold bg-[#0F62FE]/10 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
                 News &amp; Updates
               </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] font-display">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
                 Latest Corporate Tech Insights
               </h2>
             </div>
             <Link
               href="/news"
-              className="group inline-flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-[#0F62FE] font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-full transition-all"
+              className="group inline-flex items-center gap-2 bg-[#0F62FE]/10 hover:bg-[#0F62FE]/20 text-[#0F62FE] font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-full transition-all"
             >
               All Articles{" "}
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {recentNews.map((article: NewsArticle) => (
-              <div
+              <Link
                 key={article.slug}
-                className="bg-white border border-[#E5E7EB] rounded-2xl overflow-hidden card-hover hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col md:flex-row"
+                href={`/news/${article.slug}`}
+                className="bg-white dark:bg-[#0D2847] border border-[#E2E8F0] dark:border-slate-700/50 rounded-2xl overflow-hidden card-hover hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col group"
               >
-                {/* Image area */}
-                <div className="md:w-2/5 min-h-[180px] bg-gradient-to-br from-[#0F62FE] to-[#00A86B] relative flex items-center justify-center p-6 shrink-0">
-                  <span className="font-extrabold text-white/20 uppercase tracking-wider text-lg select-none font-display">
+                <div className="h-48 bg-gradient-to-br from-[#0F62FE] to-[#00A86B] relative flex items-center justify-center p-6 shrink-0 overflow-hidden">
+                  <span className="font-extrabold text-white/15 uppercase tracking-wider text-lg select-none font-display">
                     SmartLink News
                   </span>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
                 <div className="p-6 flex flex-col justify-between space-y-3 flex-1">
                   <div className="space-y-2">
-                    <div className="flex items-center gap-1.5 text-xs text-[#6B7280]">
+                    <div className="flex items-center gap-1.5 text-xs text-[#64748B] dark:text-slate-400">
                       <Calendar className="w-3.5 h-3.5" />
                       {new Date(article.createdAt).toLocaleDateString("en-US", {
                         month: "long",
@@ -417,35 +386,32 @@ export default async function HomePage() {
                         year: "numeric",
                       })}
                     </div>
-                    <h3 className="text-lg font-bold text-[#1F2937] leading-tight font-display">
-                      <Link
-                        href={`/news/${article.slug}`}
-                        className="hover:text-[#0F62FE] transition-colors"
-                      >
-                        {article.title}
-                      </Link>
+                    <h3 className="text-lg font-bold text-[#0F172A] dark:text-[#F1F5F9] leading-tight font-display group-hover:text-[#0F62FE] dark:group-hover:text-[#3D8BFF] transition-colors">
+                      {article.title}
                     </h3>
-                    <p className="text-sm text-[#6B7280] leading-relaxed line-clamp-3">
+                    <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed line-clamp-3">
                       {article.summary}
                     </p>
                   </div>
-                  <Link
-                    href={`/news/${article.slug}`}
-                    className="font-bold text-xs uppercase tracking-wider text-[#0F62FE] hover:text-[#00A86B] flex items-center gap-1.5 transition-colors"
-                  >
+                  <span className="font-bold text-xs uppercase tracking-wider text-[#0F62FE] flex items-center gap-1.5 pt-3 border-t border-[#E2E8F0] dark:border-slate-700/50">
                     Read Article <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                  </span>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 9 — CTA
+          SECTION 9 — PARTNERS
       ═══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#0B1F3A] py-20 sm:py-28 select-none">
+      <PartnersMarquee />
+
+      {/* ═══════════════════════════════════════════════════════════
+          SECTION 10 — CONTACT CTA
+      ═══════════════════════════════════════════════════════════ */}
+      <section className="bg-[#071A35] py-20 sm:py-28 select-none">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8 max-w-3xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display leading-tight">
@@ -459,13 +425,13 @@ export default async function HomePage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link
                 href="/request-service"
-                className="bg-[#0F62FE] hover:bg-blue-700 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 transition-all text-center"
+                className="bg-[#0F62FE] hover:bg-[#0A55D4] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-lg shadow-[#0F62FE]/30 hover:shadow-[#0F62FE]/50 hover:-translate-y-0.5 transition-all text-center inline-flex items-center justify-center gap-2"
               >
-                Hire SmartLink
+                Hire SmartLink <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 href="/contact"
-                className="bg-transparent border-2 border-white/30 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full hover:bg-white/10 transition-all text-center"
+                className="bg-transparent border-2 border-white/25 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full hover:bg-white/10 transition-all text-center"
               >
                 Contact Us Direct
               </Link>

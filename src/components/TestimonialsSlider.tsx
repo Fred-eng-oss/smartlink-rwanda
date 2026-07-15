@@ -75,16 +75,16 @@ export default function TestimonialsSlider({
                         </div>
 
                         {/* Quote text */}
-                        <p className="text-lg sm:text-xl font-medium italic text-[#1F2937] leading-relaxed">
+                        <p className="text-lg sm:text-xl font-medium italic text-[#0F172A] dark:text-[#F1F5F9] leading-relaxed">
                             &ldquo;{current.content}&rdquo;
                         </p>
 
                         {/* Author */}
                         <div className="pt-2">
-                            <h4 className="font-bold text-base text-[#1F2937] font-display">
+                            <h4 className="font-bold text-base text-[#0F172A] dark:text-[#F1F5F9] font-display">
                                 {current.name}
                             </h4>
-                            <p className="text-sm text-[#6B7280] mt-0.5">
+                            <p className="text-sm text-[#64748B] dark:text-slate-400 mt-0.5">
                                 {current.role} at{" "}
                                 <span className="font-semibold text-[#0F62FE]">
                                     {current.company}
@@ -96,7 +96,7 @@ export default function TestimonialsSlider({
             </div>
 
             {/* Navigation controls */}
-            <div className="flex justify-center items-center gap-4 mt-8 pt-4 border-t border-[#E5E7EB]">
+            <div className="flex justify-center items-center gap-4 mt-8 pt-4 border-t border-[#E2E8F0] dark:border-slate-700/50">
                 <button
                     onClick={handlePrev}
                     className="p-2.5 rounded-full bg-[#00A86B] text-white hover:bg-[#00A86B]/90 transition-colors shadow-sm outline-none"
@@ -114,7 +114,7 @@ export default function TestimonialsSlider({
                             className={`h-2.5 rounded-full transition-all duration-300 outline-none ${
                                 i === activeIndex
                                     ? "bg-[#0F62FE] w-6"
-                                    : "bg-[#E5E7EB] hover:bg-[#D1D5DB]"
+                                    : "bg-[#E2E8F0] dark:bg-slate-700 hover:bg-[#CBD5E1]"
                             }`}
                             aria-label={`Go to slide ${i + 1}`}
                         />

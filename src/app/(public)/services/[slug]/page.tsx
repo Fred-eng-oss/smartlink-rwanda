@@ -56,7 +56,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             </section>
 
             {/* 2. SERVICE DETAILS */}
-            <section className="bg-white py-20 sm:py-24">
+            <section className="bg-white dark:bg-[#132D52] py-20 sm:py-24">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                         <div className="lg:col-span-8 space-y-10">
@@ -70,9 +70,9 @@ export default async function ServiceDetailPage({ params }: Props) {
                                 </h2>
                                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {service.benefits.map((b: string, idx: number) => (
-                                        <div key={idx} className="flex items-start gap-3 p-4 bg-white rounded-xl border border-light-gray/50">
+                                        <div key={idx} className="flex items-start gap-3 p-4 bg-white dark:bg-[#132D52] rounded-xl border border-light-gray/50 dark:border-slate-700">
                                             <CheckCircle className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
-                                            <span className="text-sm text-dark-text font-medium">{b}</span>
+                                            <span className="text-sm text-dark-text dark:text-[#F8FAFC] font-medium">{b}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -80,7 +80,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
                             {/* Process */}
                             <div className="bg-surface rounded-2xl p-8 border border-light-gray/50">
-                                <h2 className="text-xl font-extrabold text-dark-text font-display mb-6 flex items-center gap-3">
+                                <h2 className="text-xl font-extrabold text-dark-text dark:text-[#F8FAFC] font-display mb-6 flex items-center gap-3">
                                     <span className="p-2.5 bg-primary/10 rounded-xl">
                                         <Settings className="w-5 h-5 text-primary" />
                                     </span>
@@ -88,11 +88,11 @@ export default async function ServiceDetailPage({ params }: Props) {
                                 </h2>
                                 <div className="space-y-4">
                                     {service.process.map((step: string, idx: number) => (
-                                        <div key={idx} className="flex items-center gap-4 p-4 bg-white rounded-xl border border-light-gray/50">
+                                        <div key={idx} className="flex items-center gap-4 p-4 bg-white dark:bg-[#132D52] rounded-xl border border-light-gray/50 dark:border-slate-700">
                                             <span className="w-10 h-10 rounded-full bg-primary/10 text-primary font-bold text-sm flex items-center justify-center shrink-0 font-display">
                                                 {String(idx + 1).padStart(2, "0")}
                                             </span>
-                                            <span className="text-sm text-dark-text font-medium">{step}</span>
+                                            <span className="text-sm text-dark-text dark:text-[#F8FAFC] font-medium">{step}</span>
                                         </div>
                                     ))}
                                 </div>
@@ -100,7 +100,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
                             {/* Features */}
                             <div className="bg-surface rounded-2xl p-8 border border-light-gray/50">
-                                <h2 className="text-xl font-extrabold text-dark-text font-display mb-6 flex items-center gap-3">
+                                <h2 className="text-xl font-extrabold text-dark-text dark:text-[#F8FAFC] font-display mb-6 flex items-center gap-3">
                                     <span className="p-2.5 bg-primary/10 rounded-xl">
                                         <Zap className="w-5 h-5 text-primary" />
                                     </span>
@@ -110,7 +110,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                                     {service.features.map((f: string, idx: number) => (
                                         <span
                                             key={idx}
-                                            className="inline-flex items-center gap-2 text-sm text-dark-text bg-white px-4 py-2.5 rounded-full border border-light-gray/50 font-medium"
+                                            className="inline-flex items-center gap-2 text-sm text-dark-text dark:text-[#F8FAFC] bg-white dark:bg-[#132D52] px-4 py-2.5 rounded-full border border-light-gray/50 dark:border-slate-700 font-medium"
                                         >
                                             <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                                             {f}
@@ -123,10 +123,10 @@ export default async function ServiceDetailPage({ params }: Props) {
                         {/* Sidebar */}
                         <div className="lg:col-span-4 space-y-8">
                             <div className="bg-surface rounded-2xl p-8 border border-light-gray/50 sticky top-28 space-y-6">
-                                <h3 className="text-lg font-extrabold text-dark-text font-display">
+                                <h3 className="text-lg font-extrabold text-dark-text dark:text-[#F8FAFC] font-display">
                                     Ready to Get Started?
                                 </h3>
-                                <p className="text-sm text-secondary-text leading-relaxed">
+                                <p className="text-sm text-secondary-text dark:text-slate-400 leading-relaxed">
                                     Request this service and our team will schedule a consultation to discuss your specific requirements.
                                 </p>
                                 <Link
@@ -137,7 +137,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                                 </Link>
                                 <Link
                                     href="/contact"
-                                    className="block w-full text-center bg-white hover:bg-surface text-dark-text font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full border border-light-gray/50 transition-all"
+                                    className="block w-full text-center bg-white dark:bg-[#132D52] hover:bg-surface dark:hover:bg-[#0B1F3A] text-dark-text dark:text-[#F8FAFC] font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full border border-light-gray/50 dark:border-slate-700 transition-all"
                                 >
                                     Contact Us
                                 </Link>
@@ -145,7 +145,7 @@ export default async function ServiceDetailPage({ params }: Props) {
 
                             {/* Other Services */}
                             <div className="bg-surface rounded-2xl p-8 border border-light-gray/50 space-y-4">
-                                <h3 className="text-sm font-extrabold text-dark-text font-display uppercase tracking-wider">
+                                <h3 className="text-sm font-extrabold text-dark-text dark:text-[#F8FAFC] font-display uppercase tracking-wider">
                                     Other Services
                                 </h3>
                                 <ul className="space-y-3">
@@ -156,7 +156,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                                             <li key={s.slug}>
                                                 <Link
                                                     href={`/services/${s.slug}`}
-                                                    className="text-sm text-secondary-text hover:text-primary transition-colors flex items-center gap-2"
+                                                    className="text-sm text-secondary-text dark:text-slate-400 hover:text-primary dark:hover:text-[#3D8BFF] transition-colors flex items-center gap-2"
                                                 >
                                                     <ArrowRight className="w-3.5 h-3.5" />
                                                     {s.name}

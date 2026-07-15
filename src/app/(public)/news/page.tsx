@@ -16,7 +16,7 @@ export default async function NewsPage() {
     return (
         <div className="space-y-0">
             {/* Hero Banner */}
-            <section className="relative bg-gradient-to-br from-[#0F62FE] via-[#0B4FD1] to-[#00A86B] text-white py-20 sm:py-28 overflow-hidden select-none">
+            <section className="relative bg-gradient-to-br from-[#071A35] via-[#0D2847] to-[#0F62FE] text-white py-20 sm:py-28 overflow-hidden select-none">
                 <div className="absolute inset-0">
                     <div className="absolute top-10 right-10 w-72 h-72 bg-white/5 rounded-full blur-3xl" />
                     <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#00A86B]/10 rounded-full blur-3xl" />
@@ -36,12 +36,12 @@ export default async function NewsPage() {
             </section>
 
             {/* Articles Grid */}
-            <section className="bg-[#F8FAFC] py-20 sm:py-28">
+            <section className="bg-[#F8FAFC] dark:bg-[#071A35] py-20 sm:py-28">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     {newsList.length === 0 ? (
-                        <div className="text-center py-20 bg-white rounded-2xl border border-[#E5E7EB]">
-                            <Newspaper className="w-12 h-12 text-[#E5E7EB] mx-auto mb-4" />
-                            <p className="text-[#6B7280] text-sm font-semibold">No articles published yet. Check back soon!</p>
+                        <div className="text-center py-20 bg-white dark:bg-[#0D2847] rounded-2xl border border-[#E2E8F0] dark:border-slate-700/50">
+                            <Newspaper className="w-12 h-12 text-[#E2E8F0] mx-auto mb-4" />
+                            <p className="text-[#64748B] dark:text-slate-400 text-sm font-semibold">No articles published yet. Check back soon!</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -49,7 +49,7 @@ export default async function NewsPage() {
                                 <Link
                                     key={article.slug}
                                     href={`/news/${article.slug}`}
-                                    className="bg-white rounded-2xl overflow-hidden border border-[#E5E7EB]/60 shadow-sm card-hover flex flex-col group"
+                                    className="bg-white dark:bg-[#0D2847] rounded-2xl overflow-hidden border border-[#E2E8F0] dark:border-slate-700/50 shadow-sm card-hover flex flex-col group"
                                 >
                                     {/* Image */}
                                     <div className="h-48 bg-gradient-to-br from-[#0F62FE] to-[#00A86B] relative flex items-center justify-center overflow-hidden">
@@ -70,7 +70,7 @@ export default async function NewsPage() {
                                     </div>
 
                                     <div className="p-6 flex flex-col flex-grow space-y-3">
-                                        <div className="flex items-center gap-4 text-[10px] font-bold text-[#6B7280] uppercase tracking-widest">
+                                        <div className="flex items-center gap-4 text-[10px] font-bold text-[#64748B] dark:text-slate-400 uppercase tracking-widest">
                                             <span className="flex items-center gap-1">
                                                 <Calendar className="w-3 h-3 text-[#0F62FE]" />
                                                 {new Date(article.createdAt).toLocaleDateString("en-US", {
@@ -85,15 +85,15 @@ export default async function NewsPage() {
                                             </span>
                                         </div>
 
-                                        <h3 className="text-lg font-bold text-[#1F2937] leading-tight font-display group-hover:text-[#0F62FE] transition-colors">
+                                        <h3 className="text-lg font-bold text-[#0F172A] dark:text-[#F1F5F9] leading-tight font-display group-hover:text-[#0F62FE] dark:group-hover:text-[#3D8BFF] transition-colors">
                                             {article.title}
                                         </h3>
 
-                                        <p className="text-xs text-[#6B7280] leading-relaxed line-clamp-3 flex-grow">
+                                        <p className="text-xs text-[#64748B] dark:text-slate-400 leading-relaxed line-clamp-3 flex-grow">
                                             {article.summary}
                                         </p>
 
-                                        <span className="font-bold text-xs uppercase tracking-wider text-[#0F62FE] flex items-center gap-1.5 pt-3 border-t border-[#E5E7EB]/60 group-hover:text-[#0B4FD1] transition-colors">
+                                        <span className="font-bold text-xs uppercase tracking-wider text-[#0F62FE] flex items-center gap-1.5 pt-3 border-t border-[#E2E8F0] dark:border-slate-700/50 group-hover:text-[#0B4FD1] transition-colors">
                                             Read Article <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                                         </span>
                                     </div>

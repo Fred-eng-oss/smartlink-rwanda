@@ -93,7 +93,7 @@ export default function ControlMeasuresPage() {
   return (
     <div className="space-y-0 pb-20">
       {/* HERO BANNER */}
-      <section className="relative bg-gradient-to-br from-[#0B1F3A] via-[#132D52] to-[#0F62FE] py-20 sm:py-28 overflow-hidden select-none">
+      <section className="relative bg-gradient-to-br from-[#071A35] via-[#0D2847] to-[#0F62FE] py-20 sm:py-28 overflow-hidden select-none">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(15,98,254,0.25),transparent)]" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#00A86B]/10 rounded-full blur-3xl -ml-20 -mb-20" />
         <div className="absolute top-20 right-[20%] w-16 h-16 border border-white/10 rounded-2xl rotate-45" />
@@ -112,36 +112,36 @@ export default function ControlMeasuresPage() {
       </section>
 
       {/* CONTROL MEASURES TABLE */}
-      <section className="bg-white dark:bg-[#132D52] py-20 sm:py-24">
+      <section className="bg-white dark:bg-[#0D2847] py-20 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
             <span className="inline-block text-xs font-bold bg-blue-50 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
               Operational Directives
             </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#1F2937] dark:text-[#F8FAFC] font-display">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
               Control Measures Overview
             </h2>
-            <p className="text-sm text-[#6B7280] dark:text-slate-400">
+            <p className="text-sm text-[#64748B] dark:text-slate-400">
               Detailed directives governing all aspects of the operation from planning through execution.
             </p>
           </div>
 
           {/* Desktop Table */}
-          <div className="hidden lg:block overflow-hidden rounded-2xl border border-[#E5E7EB] dark:border-slate-700 shadow-sm">
+          <div className="hidden lg:block overflow-hidden rounded-2xl border border-[#E2E8F0] dark:border-slate-700/50 shadow-sm">
             <table className="w-full text-left">
               <thead>
-                <tr className="bg-gradient-to-r from-[#0B1F3A] to-[#132D52]">
+                <tr className="bg-gradient-to-r from-[#071A35] to-[#0D2847]">
                   <th className="px-6 py-4 text-xs font-bold text-white uppercase tracking-wider w-16">S/N</th>
                   <th className="px-6 py-4 text-xs font-bold text-white uppercase tracking-wider w-56">Measures</th>
                   <th className="px-6 py-4 text-xs font-bold text-white uppercase tracking-wider">Details</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#E5E7EB] dark:divide-slate-700">
+              <tbody className="divide-y divide-[#E2E8F0] dark:divide-slate-700/50">
                 {controlMeasures.map((item) => (
-                  <tr
-                    key={item.sn}
-                    className="bg-[#F8FAFC] dark:bg-[#0B1F3A] hover:bg-blue-50/50 dark:hover:bg-[#132D52]/50 transition-colors"
-                  >
+                    <tr
+                      key={item.sn}
+                      className="bg-[#F8FAFC] dark:bg-[#071A35] hover:bg-[#0F62FE]/5 dark:hover:bg-[#0D2847]/50 transition-colors"
+                    >
                     <td className="px-6 py-5 text-sm font-bold text-[#0F62FE] align-top">
                       {item.sn}
                     </td>
@@ -150,12 +150,12 @@ export default function ControlMeasuresPage() {
                         <div className="p-2 bg-[#0F62FE]/10 rounded-xl text-[#0F62FE] shrink-0">
                           <item.icon className="w-4 h-4" />
                         </div>
-                        <span className="text-sm font-bold text-[#1F2937] dark:text-[#F8FAFC]">
+                        <span className="text-sm font-bold text-[#0F172A] dark:text-[#F1F5F9]">
                           {item.measure}
                         </span>
                       </div>
                     </td>
-                    <td className="px-6 py-5 text-sm text-[#6B7280] dark:text-slate-400 leading-relaxed align-top">
+                    <td className="px-6 py-5 text-sm text-[#64748B] dark:text-slate-400 leading-relaxed align-top">
                       {item.details.map((detail, idx) => {
                         if (typeof detail === "string") {
                           return (
@@ -166,7 +166,7 @@ export default function ControlMeasuresPage() {
                         }
                         return (
                           <p key={idx} className="mb-1.5 ml-4">
-                            <span className="font-bold text-[#1F2937] dark:text-[#F8FAFC]">
+                            <span className="font-bold text-[#0F172A] dark:text-[#F1F5F9]">
                               {detail.label}
                             </span>{" "}
                             {detail.text}
@@ -185,9 +185,9 @@ export default function ControlMeasuresPage() {
             {controlMeasures.map((item) => (
               <div
                 key={item.sn}
-                className="bg-[#F8FAFC] dark:bg-[#0B1F3A] rounded-2xl border border-[#E5E7EB] dark:border-slate-700 overflow-hidden"
+                className="bg-[#F8FAFC] dark:bg-[#071A35] rounded-2xl border border-[#E2E8F0] dark:border-slate-700/50 overflow-hidden"
               >
-                <div className="bg-gradient-to-r from-[#0B1F3A] to-[#132D52] px-6 py-4 flex items-center gap-3">
+                <div className="bg-gradient-to-r from-[#071A35] to-[#0D2847] px-6 py-4 flex items-center gap-3">
                   <span className="text-sm font-bold text-[#0F62FE] bg-white/10 px-2.5 py-1 rounded-lg">
                     {item.sn}
                   </span>
@@ -196,7 +196,7 @@ export default function ControlMeasuresPage() {
                   </div>
                   <h3 className="text-sm font-bold text-white">{item.measure}</h3>
                 </div>
-                <div className="px-6 py-5 text-sm text-[#6B7280] dark:text-slate-400 leading-relaxed">
+                <div className="px-6 py-5 text-sm text-[#64748B] dark:text-slate-400 leading-relaxed">
                   {item.details.map((detail, idx) => {
                     if (typeof detail === "string") {
                       return (
@@ -207,7 +207,7 @@ export default function ControlMeasuresPage() {
                     }
                     return (
                       <p key={idx} className="mb-1.5 ml-4">
-                        <span className="font-bold text-[#1F2937] dark:text-[#F8FAFC]">
+                        <span className="font-bold text-[#0F172A] dark:text-[#F1F5F9]">
                           {detail.label}
                         </span>{" "}
                         {detail.text}
@@ -222,7 +222,7 @@ export default function ControlMeasuresPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#0B1F3A] py-20 sm:py-28 select-none">
+      <section className="bg-[#071A35] py-20 sm:py-28 select-none">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8 max-w-3xl mx-auto">
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display leading-tight">

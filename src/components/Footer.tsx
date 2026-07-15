@@ -37,7 +37,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-[#0B1F3A] text-slate-300 relative overflow-hidden mt-auto">
+    <footer className="bg-[#071A35] text-slate-300 relative overflow-hidden mt-auto">
       {/* Subtle gradient decorations */}
       <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#0F62FE]/5 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-[#00A86B]/5 rounded-full blur-[120px] pointer-events-none" />
