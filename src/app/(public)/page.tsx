@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   CheckCircle,
@@ -21,8 +22,7 @@ import {
   Users,
   Award,
   Star,
-  BookOpen,
-  ChevronRight,
+  User,
 } from "lucide-react";
 import {
   getSettings,
@@ -33,33 +33,32 @@ import {
 } from "@/lib/data";
 import type { Service, Program, NewsArticle } from "@/lib/types";
 import HeroSlideshow from "@/components/HeroSlideshow";
-import HeroStats from "@/components/HeroStats";
 import StatsCounter from "@/components/StatsCounter";
 import TestimonialsSlider from "@/components/TestimonialsSlider";
 import PartnersMarquee from "@/components/PartnersMarquee";
 
 const whyChooseUs = [
   {
-    icon: Shield,
-    title: "Reliability",
-    description:
-      "Dependable IT infrastructure and support systems built for 99.9% uptime and mission-critical operations.",
-  },
-  {
-    icon: Lightbulb,
-    title: "Innovation",
-    description:
-      "We leverage cutting-edge frameworks and emerging technologies to deliver future-proof solutions.",
-  },
-  {
-    icon: Zap,
-    title: "Expertise",
+    icon: Award,
+    title: "Experience",
     description:
       "Over 8 years of hands-on experience delivering enterprise software, training, and consultancy across East Africa.",
   },
   {
+    icon: Shield,
+    title: "Certified Experts",
+    description:
+      "Our team holds international certifications from Cisco, Microsoft, Google, and CompTIA.",
+  },
+  {
+    icon: Zap,
+    title: "Quality Services",
+    description:
+      "We deliver high-standards service, robust solutions, and practical engineering results for every engagement.",
+  },
+  {
     icon: HeadphonesIcon,
-    title: "Support",
+    title: "Customer Support",
     description:
       "Dedicated post-deployment assistance with responsive technical teams available whenever you need us.",
   },
@@ -79,115 +78,112 @@ export default async function HomePage() {
   const newsList = await getNews();
   const testimonials = await getTestimonials();
 
-  const featuredServices = allServices.slice(0, 4);
   const featuredPrograms = allPrograms.slice(0, 4);
   const recentNews = newsList.slice(0, 3);
 
   return (
     <div className="space-y-0">
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 1 — HERO SLIDESHOW
+          SECTION 1 — HERO SLIDESHOW (100vh, rotating photos, feature cards)
       ═══════════════════════════════════════════════════════════ */}
       <HeroSlideshow />
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 2 — ABOUT SMARTLINK RWANDA
+          SECTION 2 — ABOUT PREVIEW
       ═══════════════════════════════════════════════════════════ */}
       <section className="bg-white dark:bg-[#0D2847] py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-            <div className="lg:col-span-6 space-y-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div className="space-y-6">
               <span className="inline-block text-xs font-bold bg-[#0F62FE]/10 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
-                Who We Are
+                About SmartLink Rwanda
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] leading-tight font-display">
-                Empowering individuals and businesses with innovative technology.
+                Bridging the Digital Divide in East Africa
               </h2>
               <div className="w-16 h-1.5 bg-gradient-to-r from-[#0F62FE] to-[#00A86B] rounded-full" />
-            </div>
-            <div className="lg:col-span-6 space-y-6 text-[#64748B] dark:text-slate-400 text-sm leading-relaxed">
-              <p className="text-base font-medium">
+              <p className="text-base text-[#64748B] dark:text-slate-400 leading-relaxed font-medium">
                 {settings.about_overview}
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 text-sm font-semibold text-[#0F172A] dark:text-[#F1F5F9]">
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle className="w-5 h-5 text-[#00A86B] shrink-0" />
-                  Empowering Regional Tech Talents
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle className="w-5 h-5 text-[#00A86B] shrink-0" />
-                  Robust Core Platform Architectures
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle className="w-5 h-5 text-[#00A86B] shrink-0" />
-                  High Uptime Cloud Servers
-                </div>
-                <div className="flex items-center gap-2.5">
-                  <CheckCircle className="w-5 h-5 text-[#00A86B] shrink-0" />
-                  Professional Corporate Support
-                </div>
-              </div>
+              <p className="text-sm text-[#64748B]/70 dark:text-slate-400/70 leading-relaxed">
+                Our mission is to empower individuals and businesses with
+                state-of-the-art software systems, high-quality trainings, and
+                expert digital auditing, fostering sustainable growth in East
+                Africa&apos;s digital economy.
+              </p>
               <div className="pt-4">
                 <Link
                   href="/about"
-                  className="inline-flex items-center gap-2 text-[#0F62FE] hover:text-[#00A86B] font-bold uppercase text-sm tracking-wider transition-colors"
+                  className="inline-flex items-center gap-2 bg-[#0F62FE] hover:bg-[#0B4FD1] text-white font-bold text-sm uppercase tracking-wider px-6 py-3 rounded-full shadow-lg shadow-[#0F62FE]/20 hover:shadow-[#0F62FE]/40 hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  Learn More About Us <ArrowRight className="w-4 h-4" />
+                  Learn More <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { value: "500+", label: "Students Trained", icon: Users, color: "from-[#0F62FE] to-[#3D8BFF]" },
+                { value: "200+", label: "Projects Completed", icon: Briefcase, color: "from-[#00A86B] to-[#00CC82]" },
+                { value: "100+", label: "Happy Clients", icon: Star, color: "from-[#F59E0B] to-[#FBBF24]" },
+                { value: "20+", label: "Certified Programs", icon: Award, color: "from-[#8B5CF6] to-[#A78BFA]" },
+              ].map((stat, i) => (
+                <div
+                  key={i}
+                  className="bg-[#F8FAFC] dark:bg-[#071A35] rounded-2xl p-6 border border-[#E2E8F0] dark:border-slate-700/50 card-hover text-center group"
+                >
+                  <div className={`p-3 bg-gradient-to-br ${stat.color} rounded-xl w-fit mx-auto mb-3 text-white group-hover:scale-110 transition-transform duration-300`}>
+                    <stat.icon className="w-5 h-5" />
+                  </div>
+                  <div className="text-3xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs font-semibold text-[#64748B] dark:text-slate-400 mt-1 uppercase tracking-wider">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 3 — FEATURED SERVICES
+          SECTION 3 — SERVICES PREVIEW (all 7)
       ═══════════════════════════════════════════════════════════ */}
       <section className="bg-[#F8FAFC] dark:bg-[#071A35] py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
-            <div className="space-y-4">
-              <span className="inline-block text-xs font-bold bg-[#0F62FE]/10 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
-                What We Do
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
-                Our Services
-              </h2>
-            </div>
-            <Link
-              href="/services"
-              className="group inline-flex items-center gap-2 bg-[#0F62FE]/10 hover:bg-[#0F62FE]/20 text-[#0F62FE] font-bold uppercase text-xs tracking-wider px-5 py-2.5 rounded-full transition-all"
-            >
-              All Services{" "}
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+            <span className="inline-block text-xs font-bold bg-[#0F62FE]/10 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
+              What We Offer
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
+              Our Services
+            </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {featuredServices.map((service: Service, index: number) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {allServices.map((service: Service, index: number) => {
               const Icon = getServiceIcon(index);
               return (
                 <div
                   key={service.slug}
-                  className="bg-white dark:bg-[#0D2847] border border-[#E2E8F0] dark:border-slate-700/50 rounded-2xl overflow-hidden card-hover hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col p-6 group"
+                  className="bg-white dark:bg-[#0D2847] border border-[#E2E8F0] dark:border-slate-700/50 rounded-2xl p-6 card-hover hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group"
                 >
-                  <div className="p-3 bg-[#0F62FE]/10 rounded-xl w-fit text-[#0F62FE] mb-5 group-hover:bg-[#0F62FE] group-hover:text-white transition-all duration-300">
+                  <div className="p-3 bg-[#0F62FE]/10 rounded-xl w-fit text-[#0F62FE] mb-4 group-hover:bg-[#0F62FE] group-hover:text-white transition-all duration-300">
                     <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#0F172A] dark:text-[#F1F5F9] font-display mb-2">
+                  <h3 className="text-base font-bold text-[#0F172A] dark:text-[#F1F5F9] font-display mb-2">
                     {service.name}
                   </h3>
-                  <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed line-clamp-3 mb-6">
+                  <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed line-clamp-2 mb-4 flex-grow">
                     {service.description}
                   </p>
-                  <div className="mt-auto pt-4 border-t border-[#E2E8F0] dark:border-slate-700/50">
-                    <Link
-                      href={`/services/${service.slug}`}
-                      className="font-bold text-xs uppercase tracking-wider text-[#0F62FE] hover:text-[#00A86B] flex items-center gap-1.5 transition-colors"
-                    >
-                      Learn More <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
-                  </div>
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="font-bold text-xs uppercase tracking-wider text-[#0F62FE] hover:text-[#00A86B] flex items-center gap-1.5 transition-colors mt-auto"
+                  >
+                    Read More <ArrowRight className="w-3.5 h-3.5" />
+                  </Link>
                 </div>
               );
             })}
@@ -196,9 +192,57 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 4 — FEATURED PROGRAMS
+          SECTION 4 — WHY CHOOSE US
       ═══════════════════════════════════════════════════════════ */}
       <section className="bg-white dark:bg-[#0D2847] py-20 sm:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+            <span className="inline-block text-xs font-bold bg-[#00A86B]/10 text-[#00A86B] rounded-full px-4 py-1.5 uppercase tracking-widest">
+              Why Choose Us
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
+              Your Trusted ICT Partner
+            </h2>
+            <p className="text-sm text-[#64748B] dark:text-slate-400">
+              We deliver excellence in every engagement with proven expertise and
+              unwavering commitment.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {whyChooseUs.map((item, idx) => (
+              <div
+                key={idx}
+                className="bg-[#F8FAFC] dark:bg-[#071A35] rounded-2xl p-6 border border-[#E2E8F0] dark:border-slate-700/50 card-hover hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group text-center"
+              >
+                <div className="p-4 bg-[#0F62FE]/10 rounded-2xl w-fit mx-auto mb-5 group-hover:bg-[#0F62FE] group-hover:text-white transition-all duration-300 text-[#0F62FE]">
+                  <item.icon className="w-7 h-7" />
+                </div>
+                <h3 className="font-bold text-lg text-[#0F172A] dark:text-[#F1F5F9] mb-2 font-display">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          SECTION 5 — STATISTICS COUNTER
+      ═══════════════════════════════════════════════════════════ */}
+      <section className="bg-gradient-to-r from-[#071A35] via-[#0F62FE] to-[#00A86B] py-20 sm:py-28 select-none">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <StatsCounter />
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          SECTION 6 — PROGRAMS
+      ═══════════════════════════════════════════════════════════ */}
+      <section className="bg-[#F8FAFC] dark:bg-[#071A35] py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 mb-16">
             <div className="space-y-4">
@@ -206,7 +250,7 @@ export default async function HomePage() {
                 Training &amp; Certification
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
-                Professional IT Academy Programs
+                Our Programs
               </h2>
             </div>
             <Link
@@ -224,39 +268,28 @@ export default async function HomePage() {
               return (
                 <div
                   key={prog.slug}
-                  className="bg-[#F8FAFC] dark:bg-[#071A35] border border-[#E2E8F0] dark:border-slate-700/50 rounded-2xl overflow-hidden card-hover hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group"
+                  className="bg-white dark:bg-[#0D2847] border border-[#E2E8F0] dark:border-slate-700/50 rounded-2xl overflow-hidden card-hover hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col group"
                 >
-                  <div className="p-6 space-y-4 flex-1">
-                    <div className="flex items-center justify-between">
-                      <div className="p-3 bg-[#F59E0B]/10 rounded-xl text-[#F59E0B] group-hover:bg-[#F59E0B] group-hover:text-white transition-all duration-300">
-                        <PIcon className="w-6 h-6" />
-                      </div>
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold bg-white dark:bg-[#0D2847] text-[#64748B] dark:text-slate-400 border border-[#E2E8F0] dark:border-slate-700/50">
-                        <Clock className="w-3 h-3" />
-                        {prog.duration}
-                      </span>
-                    </div>
-                    <h3 className="text-lg font-bold text-[#0F172A] dark:text-[#F1F5F9] font-display">
+                  {/* Image placeholder */}
+                  <div className="h-40 bg-gradient-to-br from-[#071A35] to-[#0F62FE] relative flex items-center justify-center overflow-hidden">
+                    <PIcon className="w-12 h-12 text-white/20" />
+                    <span className="absolute top-3 right-3 inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold bg-[#F59E0B] text-white shadow-lg">
+                      <Clock className="w-3 h-3" />
+                      {prog.duration}
+                    </span>
+                  </div>
+                  <div className="p-5 space-y-3 flex-1 flex flex-col">
+                    <h3 className="text-base font-bold text-[#0F172A] dark:text-[#F1F5F9] font-display">
                       {prog.name}
                     </h3>
-                    <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed line-clamp-3">
+                    <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed line-clamp-2 flex-grow">
                       {prog.description}
                     </p>
-                    <ul className="space-y-2 text-xs text-[#64748B] dark:text-slate-400">
-                      {prog.learningOutcomes.slice(0, 3).map((out: string, i: number) => (
-                        <li key={i} className="flex items-center gap-2">
-                          <CheckCircle className="w-3.5 h-3.5 text-[#00A86B] shrink-0" />
-                          {out}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="px-6 pb-6 pt-2">
                     <Link
-                      href={`/programs#${prog.slug}`}
-                      className="font-bold text-xs uppercase tracking-wider text-[#F59E0B] hover:text-[#0F62FE] flex items-center gap-1.5 transition-colors"
+                      href="/register"
+                      className="inline-flex items-center justify-center gap-1.5 bg-[#0F62FE] hover:bg-[#0B4FD1] text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full shadow-md shadow-[#0F62FE]/20 transition-all duration-300 mt-auto"
                     >
-                      View Program <ArrowRight className="w-3.5 h-3.5" />
+                      Register Now <ArrowRight className="w-3.5 h-3.5" />
                     </Link>
                   </div>
                 </div>
@@ -267,81 +300,24 @@ export default async function HomePage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 5 — WHY CHOOSE US
-      ═══════════════════════════════════════════════════════════ */}
-      <section className="bg-[#F8FAFC] dark:bg-[#071A35] py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-            <span className="inline-block text-xs font-bold bg-[#00A86B]/10 text-[#00A86B] rounded-full px-4 py-1.5 uppercase tracking-widest">
-              Our Value Proposition
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
-              Why Corporate Clients Choose Us
-            </h2>
-            <p className="text-sm text-[#64748B] dark:text-slate-400">
-              We deliver high-standards service, robust solutions, and practical
-              engineering results for every engagement.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {whyChooseUs.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white dark:bg-[#0D2847] rounded-2xl p-6 border border-[#E2E8F0] dark:border-slate-700/50 card-hover hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group"
-              >
-                <div className="p-3 bg-[#0F62FE]/10 rounded-xl w-fit text-[#0F62FE] mb-5 group-hover:bg-[#0F62FE] group-hover:text-white transition-all duration-300">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <h3 className="font-bold text-lg text-[#0F172A] dark:text-[#F1F5F9] mb-2 font-display">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════
-          SECTION 6 — STATISTICS COUNTER
-      ═══════════════════════════════════════════════════════════ */}
-      <section className="bg-gradient-to-r from-[#071A35] via-[#0F62FE] to-[#00A86B] py-20 sm:py-28 select-none">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <StatsCounter />
-        </div>
-      </section>
-
-      {/* ═══════════════════════════════════════════════════════════
           SECTION 7 — TESTIMONIALS
       ═══════════════════════════════════════════════════════════ */}
       <section className="bg-white dark:bg-[#0D2847] py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-4 space-y-6">
-              <span className="inline-block text-xs font-bold bg-[#0F62FE]/10 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
-                Testimonials
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] leading-tight font-display">
-                What Our Clients Say
-              </h2>
-              <p className="text-sm text-[#64748B] dark:text-slate-400 leading-relaxed">
-                SmartLink Rwanda collaborates with leading companies and
-                organizations across Rwanda to facilitate smooth digital
-                growth.
-              </p>
-            </div>
-            <div className="lg:col-span-8">
-              <TestimonialsSlider testimonials={testimonials} />
-            </div>
+          <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
+            <span className="inline-block text-xs font-bold bg-[#0F62FE]/10 text-[#0F62FE] rounded-full px-4 py-1.5 uppercase tracking-widest">
+              Testimonials
+            </span>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
+              What Our Clients Say
+            </h2>
           </div>
+          <TestimonialsSlider testimonials={testimonials} />
         </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 8 — NEWS & UPDATES PREVIEW
+          SECTION 8 — NEWS & UPDATES
       ═══════════════════════════════════════════════════════════ */}
       <section className="bg-[#F8FAFC] dark:bg-[#071A35] py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -351,7 +327,7 @@ export default async function HomePage() {
                 News &amp; Updates
               </span>
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0F172A] dark:text-[#F1F5F9] font-display">
-                Latest Corporate Tech Insights
+                Latest News
               </h2>
             </div>
             <Link
@@ -370,11 +346,21 @@ export default async function HomePage() {
                 href={`/news/${article.slug}`}
                 className="bg-white dark:bg-[#0D2847] border border-[#E2E8F0] dark:border-slate-700/50 rounded-2xl overflow-hidden card-hover hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col group"
               >
-                <div className="h-48 bg-gradient-to-br from-[#0F62FE] to-[#00A86B] relative flex items-center justify-center p-6 shrink-0 overflow-hidden">
-                  <span className="font-extrabold text-white/15 uppercase tracking-wider text-lg select-none font-display">
-                    SmartLink News
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                <div className="h-48 bg-gradient-to-br from-[#0F62FE] to-[#00A86B] relative flex items-center justify-center overflow-hidden">
+                  {article.featuredImageUrl ? (
+                    <Image
+                      src={article.featuredImageUrl}
+                      alt={article.title}
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  ) : (
+                    <span className="font-extrabold text-white/15 uppercase tracking-wider text-lg select-none font-display">
+                      SmartLink News
+                    </span>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 </div>
                 <div className="p-6 flex flex-col justify-between space-y-3 flex-1">
                   <div className="space-y-2">
@@ -394,7 +380,7 @@ export default async function HomePage() {
                     </p>
                   </div>
                   <span className="font-bold text-xs uppercase tracking-wider text-[#0F62FE] flex items-center gap-1.5 pt-3 border-t border-[#E2E8F0] dark:border-slate-700/50">
-                    Read Article <ArrowRight className="w-3.5 h-3.5" />
+                    Read More <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </div>
               </Link>
@@ -409,13 +395,14 @@ export default async function HomePage() {
       <PartnersMarquee />
 
       {/* ═══════════════════════════════════════════════════════════
-          SECTION 10 — CONTACT CTA
+          SECTION 10 — CTA
       ═══════════════════════════════════════════════════════════ */}
       <section className="bg-[#071A35] py-20 sm:py-28 select-none">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="space-y-8 max-w-3xl mx-auto">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display leading-tight">
-              Ready to Transform Your Business?
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight font-display leading-tight">
+              Ready to Transform Your{" "}
+              <span className="gradient-text">Digital Future</span>?
             </h2>
             <p className="text-base sm:text-lg text-slate-300 leading-relaxed font-medium">
               Get in touch with our team to map your digital requirements or
@@ -424,16 +411,16 @@ export default async function HomePage() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
               <Link
-                href="/request-service"
+                href="/register"
                 className="bg-[#0F62FE] hover:bg-[#0A55D4] text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full shadow-lg shadow-[#0F62FE]/30 hover:shadow-[#0F62FE]/50 hover:-translate-y-0.5 transition-all text-center inline-flex items-center justify-center gap-2"
               >
-                Hire SmartLink <ArrowRight className="w-4 h-4" />
+                Register Today <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/contact"
-                className="bg-transparent border-2 border-white/25 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full hover:bg-white/10 transition-all text-center"
+                href="/request-service"
+                className="bg-transparent border-2 border-white/25 text-white font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full hover:bg-white/10 transition-all text-center inline-flex items-center justify-center gap-2"
               >
-                Contact Us Direct
+                Request Service
               </Link>
             </div>
           </div>

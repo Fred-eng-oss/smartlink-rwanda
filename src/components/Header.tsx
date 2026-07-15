@@ -1,17 +1,53 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, Sun, Moon, LogIn } from "lucide-react";
+import {
+  Menu,
+  X,
+  Sun,
+  Moon,
+  ChevronDown,
+  Globe,
+  Cpu,
+  Shield,
+  Mail,
+  Wrench,
+  HeadphonesIcon,
+  ShoppingBag,
+} from "lucide-react";
 import { useTheme } from "./ThemeProvider";
 import { motion, AnimatePresence } from "framer-motion";
+
+const serviceIcons: Record<string, React.ElementType> = {
+  "website-design-development": Globe,
+  "custom-business-management-systems": Cpu,
+  "web-hosting": Globe,
+  "professional-business-email-setup": Mail,
+  "computer-laptop-repair": Wrench,
+  "it-support-consulting": HeadphonesIcon,
+  "tech-accessories-sales": ShoppingBag,
+};
+
+const serviceLinks = [
+  { name: "Website Design & Development", slug: "website-design-development" },
+  { name: "Custom Business Systems", slug: "custom-business-management-systems" },
+  { name: "Web Hosting", slug: "web-hosting" },
+  { name: "Professional Business Email", slug: "professional-business-email-setup" },
+  { name: "Computer & Laptop Repair", slug: "computer-laptop-repair" },
+  { name: "IT Support & Consulting", slug: "it-support-consulting" },
+  { name: "Tech Accessories Sales", slug: "tech-accessories-sales" },
+];
 
 export default function Header() {
   const pathname = usePathname();
   const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const servicesTimeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,22 +57,40 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setMobileServicesOpen(false);
+  }, [pathname]);
+
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/about" },
-    { name: "Services", href: "/services" },
+    { name: "Services", href: "/services", hasDropdown: true },
     { name: "Programs", href: "/programs" },
     { name: "E-Learning", href: "/e-learning/login" },
-    { name: "News", href: "/news" },
+    { name: "News & Updates", href: "/news" },
     { name: "Contact", href: "/contact" },
   ];
 
   const handleLinkClick = () => {
     setMobileMenuOpen(false);
+    setMobileServicesOpen(false);
   };
 
   const isHome = pathname === "/";
   const showSolid = scrolled || !isHome;
+
+  const handleServicesEnter = () => {
+    if (servicesTimeoutRef.current) clearTimeout(servicesTimeoutRef.current);
+    setServicesOpen(true);
+  };
+
+  const handleServicesLeave = () => {
+    servicesTimeoutRef.current = setTimeout(() => setServicesOpen(false), 150);
+  };
+
+  const isServicesActive =
+    pathname === "/services" || pathname.startsWith("/services/");
 
   return (
     <header
@@ -72,6 +126,86 @@ export default function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden xl:flex items-center gap-1">
             {navLinks.map((link) => {
+              if (link.hasDropdown) {
+                return (
+                  <div
+                    key={link.href}
+                    className="relative"
+                    onMouseEnter={handleServicesEnter}
+                    onMouseLeave={handleServicesLeave}
+                  >
+                    <Link
+                      href={link.href}
+                      className={`relative flex items-center gap-1 px-3 py-2 text-[13px] font-semibold font-sans tracking-wide rounded-xl transition-all duration-300 ${
+                        isServicesActive
+                          ? "text-[#0F62FE]"
+                          : "text-[#0F172A] dark:text-[#F1F5F9] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] hover:bg-[#0F62FE]/5"
+                      }`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setServicesOpen(!servicesOpen);
+                      }}
+                    >
+                      {link.name}
+                      <ChevronDown
+                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                          servicesOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                      {isServicesActive && (
+                        <motion.div
+                          layoutId="activeNavIndicator"
+                          className="absolute bottom-0.5 left-3 right-3 h-[2.5px] bg-gradient-to-r from-[#0F62FE] to-[#00A86B] rounded-full"
+                          transition={{ type: "spring", stiffness: 420, damping: 30 }}
+                        />
+                      )}
+                    </Link>
+
+                    {/* Services Dropdown */}
+                    <AnimatePresence>
+                      {servicesOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 8, scale: 0.96 }}
+                          transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          className="absolute top-full left-0 mt-1 w-80 bg-white dark:bg-[#0D2847] border border-[#E2E8F0] dark:border-slate-700/50 rounded-2xl shadow-2xl shadow-black/10 overflow-hidden z-50"
+                          onMouseEnter={handleServicesEnter}
+                          onMouseLeave={handleServicesLeave}
+                        >
+                          <div className="p-2">
+                            <Link
+                              href="/services"
+                              onClick={() => setServicesOpen(false)}
+                              className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-bold text-[#0F62FE] hover:bg-[#0F62FE]/5 transition-all"
+                            >
+                              View All Services
+                            </Link>
+                            <div className="h-px bg-[#E2E8F0] dark:bg-slate-700/50 mx-2 my-1" />
+                            {serviceLinks.map((svc) => {
+                              const Icon = serviceIcons[svc.slug] || Cpu;
+                              return (
+                                <Link
+                                  key={svc.slug}
+                                  href={`/services/${svc.slug}`}
+                                  onClick={() => setServicesOpen(false)}
+                                  className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium text-[#0F172A] dark:text-[#F1F5F9] hover:bg-[#F8FAFC] dark:hover:bg-[#071A35] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF] transition-all group"
+                                >
+                                  <span className="p-1.5 bg-[#0F62FE]/10 rounded-lg text-[#0F62FE] group-hover:bg-[#0F62FE] group-hover:text-white transition-all">
+                                    <Icon className="w-3.5 h-3.5" />
+                                  </span>
+                                  {svc.name}
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+
               const isActive =
                 pathname === link.href ||
                 (link.href !== "/" && pathname.startsWith(link.href));
@@ -167,10 +301,78 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto", y: 0 }}
             exit={{ opacity: 0, height: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="xl:hidden bg-white/95 dark:bg-[#071A35]/95 backdrop-blur-xl border-b border-[#E2E8F0] dark:border-slate-700 overflow-hidden shadow-2xl"
+            className="xl:hidden bg-white/95 dark:bg-[#071A35]/95 backdrop-blur-xl border-b border-[#E2E8F0] dark:border-slate-700 overflow-hidden shadow-2xl max-h-[80vh] overflow-y-auto"
           >
             <div className="px-4 pt-4 pb-6 space-y-1">
               {navLinks.map((link, i) => {
+                if (link.hasDropdown) {
+                  const isSubActive = serviceLinks.some(
+                    (s) => pathname === `/services/${s.slug}`
+                  );
+                  return (
+                    <motion.div
+                      key={link.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.05, duration: 0.2 }}
+                    >
+                      <div className="flex items-center">
+                        <Link
+                          href={link.href}
+                          onClick={handleLinkClick}
+                          className={`flex-1 px-4 py-3 rounded-2xl text-base font-semibold font-sans transition-all duration-300 ${
+                            isServicesActive && !isSubActive
+                              ? "bg-[#0F62FE]/10 text-[#0F62FE] border-l-4 border-[#0F62FE]"
+                              : "text-[#0F172A] dark:text-[#F1F5F9] hover:bg-[#F8FAFC] dark:hover:bg-[#071A35] hover:text-[#0F62FE] dark:hover:text-[#3D8BFF]"
+                          }`}
+                        >
+                          {link.name}
+                        </Link>
+                        <button
+                          onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                          className="px-3 py-3 text-[#64748B] dark:text-slate-400"
+                          aria-label="Toggle services submenu"
+                        >
+                          <ChevronDown
+                            className={`w-5 h-5 transition-transform duration-200 ${
+                              mobileServicesOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
+
+                      <AnimatePresence>
+                        {mobileServicesOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            transition={{ duration: 0.2 }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pl-6 space-y-0.5 pb-2">
+                              {serviceLinks.map((svc) => (
+                                <Link
+                                  key={svc.slug}
+                                  href={`/services/${svc.slug}`}
+                                  onClick={handleLinkClick}
+                                  className={`block px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                                    pathname === `/services/${svc.slug}`
+                                      ? "text-[#0F62FE] bg-[#0F62FE]/5"
+                                      : "text-[#64748B] dark:text-slate-400 hover:text-[#0F62FE] dark:hover:text-[#3D8BFF]"
+                                  }`}
+                                >
+                                  {svc.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                }
+
                 const isActive =
                   pathname === link.href ||
                   (link.href !== "/" && pathname.startsWith(link.href));
